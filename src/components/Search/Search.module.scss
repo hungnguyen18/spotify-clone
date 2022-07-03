@@ -1,11 +1,12 @@
 .search__container {
     width: 400px;
     height: 40px;
-    border: 1px solid rgb(151, 151, 151);
+    border: 2px solid rgb(151, 151, 151);
     border-radius: var(--radius);
     display: flex;
     align-items: center;
     font-size: 1.7rem;
+    color: var(--white);
 }
 
 .search__icon {
@@ -14,4 +15,5 @@
 
 .search__input {
     width: 90%;
+    background-color: transparent;
 }

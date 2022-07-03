@@ -1,0 +1,14 @@
+.content__container {
+    position: relative;
+}
+
+.content__header {
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.content__content {
+    height: 100vh;
+    overflow-y: auto;
+}

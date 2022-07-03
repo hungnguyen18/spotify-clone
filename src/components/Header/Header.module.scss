@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    margin: 10px 0;
+    padding: 10px 0;
 }
 
 .header__search {
@@ -13,6 +13,7 @@
 .header__info {
     display: flex;
     align-items: center;
+    color: var(--white);
 }
 
 .header__avatar {
