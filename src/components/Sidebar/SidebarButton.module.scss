@@ -1,0 +1,17 @@
+.sidebar__btn {
+    width: 80%;
+    height: 60px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    background-color: #171717;
+    color: var(--text-color);
+    border-color: rgb(38 38 38/1);
+    font-size: 1.7rem;
+    text-align: left;
+
+    &:hover {
+        background-color: rgb(10 39 37/1);
+        border-color: rgb(17 94 89/1);
+        color: var(--text-color);
+    }
+}

@@ -1,0 +1,32 @@
+.sidebar__container {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+}
+
+.sidebar__wrapper {
+    margin: 0 auto;
+    width: 70%;
+    text-align: left;
+}
+
+.sidebar__title {
+    color: var(--white);
+    font-size: 6rem;
+    line-height: 1;
+    font-weight: 700;
+    margin: 40px 0;
+}
+
+.sidebar__action {
+}
+
+.sidebar__footer {
+    color: #4a4a4a;
+}
+
+.sidebar__info {
+}
