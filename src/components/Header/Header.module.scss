@@ -17,4 +17,38 @@
 
 .header__avatar {
     margin: 0 10px;
+    cursor: pointer;
+}
+
+//Menu
+.menu {
+    width: 100%;
+    padding: 0 20px;
+    color: var(--black);
+}
+
+.menu__title {
+    margin-bottom: 20px;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: rgb(109, 109, 109);
+}
+
+.menu__action {
+    text-align: center;
+}
+
+.menu__item {
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 400;
+
+    &:hover {
+        color: rgb(10 39 37/1);
+    }
+}
+
+.menu__icon {
+    margin-right: 5px;
 }

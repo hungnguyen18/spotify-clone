@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Search.module.scss';
-import { SearchOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, SearchOutlined } from '@ant-design/icons';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +16,8 @@ function Search() {
                 className={cx('search__input')}
                 placeholder="Search..."
             />
+
+            <CloseCircleOutlined />
         </div>
     );
 }
