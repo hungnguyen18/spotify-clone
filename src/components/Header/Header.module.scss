@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: transparent;
+    background-color: var(--white);
     padding: 10px 0;
 }
 
@@ -13,7 +13,6 @@
 .header__info {
     display: flex;
     align-items: center;
-    color: var(--white);
 }
 
 .header__avatar {

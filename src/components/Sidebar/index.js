@@ -17,33 +17,29 @@ function Sidebar() {
         <div className={cx('sidebar__container')}>
             <div className={cx('sidebar__wrapper')}>
                 <div className={cx('sidebar__title')}>
-                    <span>
-                        SUJI
-                        <br />
-                        CLOUD
-                    </span>
+                    <span>SUJICLOUD</span>
                 </div>
 
                 <div className={cx('sidebar__action')}>
                     <SidebarButton
-                        title={'Home'}
+                        title="Home"
                         icon={<HomeOutlined />}
-                        to={'/'}
+                        to="/"
                     />
                     <SidebarButton
-                        title={'Trending'}
+                        title="Trending"
                         icon={<RiseOutlined />}
-                        to={'/trending'}
+                        to="/trending"
                     />
                     <SidebarButton
-                        title={'Favorites'}
+                        title="Favorites"
                         icon={<HeartOutlined />}
-                        to={'/favorites'}
+                        to="/favorites"
                     />
                     <SidebarButton
-                        title={'Library'}
+                        title="Library"
                         icon={<AppstoreOutlined />}
-                        to={'/Library'}
+                        to="/Library"
                     />
                 </div>
             </div>

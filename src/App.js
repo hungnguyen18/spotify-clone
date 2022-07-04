@@ -1,6 +1,8 @@
 import { Col, Row } from 'antd';
+import Column from 'antd/lib/table/Column';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Content from './components/Content';
+import Header from './components/Header';
 
 import Sidebar from './components/Sidebar';
 
@@ -9,11 +11,11 @@ function App() {
         <Router>
             <div className="App">
                 <Row>
-                    <Col xl={5} md={5} span={0}>
+                    <Col xl={3} span={0}>
                         <Sidebar />
                     </Col>
 
-                    <Col xl={19} md={19} xs={24}>
+                    <Col xl={21} md={24} sm={24} span={24}>
                         <Content />
                     </Col>
                 </Row>

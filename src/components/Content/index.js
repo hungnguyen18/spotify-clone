@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import classNames from 'classnames/bind';
 

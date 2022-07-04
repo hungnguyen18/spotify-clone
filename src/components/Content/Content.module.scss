@@ -10,5 +10,6 @@
 
 .content__content {
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: overlay;
+    padding-top: 100px;
 }
