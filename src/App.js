@@ -1,26 +1,58 @@
 import { Col, Row } from 'antd';
-import Column from 'antd/lib/table/Column';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Content from './components/Content';
-import Header from './components/Header';
+import Player from './components/Player';
 
 import Sidebar from './components/Sidebar';
 import Login from './pages/Auth/Login';
+import { setClientToken } from './spotify';
 
 function App() {
+    const [token, setToken] = useState('');
+
+    useEffect(() => {
+        const token = window.localStorage.getItem('token');
+        const hash = window.location.hash;
+        window.location.hash = '';
+
+        if (!token && hash) {
+            const _token = hash.split('&')[0].split('=')[1];
+
+            window.localStorage.setItem('token', _token);
+            setToken(_token);
+
+            setClientToken(_token);
+        } else {
+            setToken(token);
+
+            setClientToken(token);
+        }
+    }, []);
+
     return (
         <Router>
             <div className="App">
-                <Login />
-                {/* <Row>
-                    <Col xl={3} span={0}>
-                        <Sidebar />
-                    </Col>
+                {!token ? (
+                    <Login />
+                ) : (
+                    <>
+                        <Row>
+                            <Col xl={3} span={0}>
+                                <Sidebar />
+                            </Col>
 
-                    <Col xl={21} md={24} sm={24} span={24}>
-                        <Content />
-                    </Col>
-                </Row> */}
+                            <Col xl={21} md={24} sm={24} span={24}>
+                                <Content />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Player />
+                            </Col>
+                        </Row>
+                    </>
+                )}
             </div>
         </Router>
     );

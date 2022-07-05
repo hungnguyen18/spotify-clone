@@ -1,14 +1,26 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Tooltip } from 'antd';
 
 import styles from './Header.module.scss';
 import Search from '../Search';
+import apiClient from '../../spotify';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const [infoUser, setInfoUser] = useState({});
+    const [avatar, setAvatar] = useState('');
+
+    useEffect(() => {
+        apiClient.get('me').then((response) => {
+            setInfoUser(response.data);
+
+            setAvatar(response.data.images[0].url);
+        });
+    }, []);
+
     return (
         <div className={cx('header__container')}>
             <div className={cx('header__search')}>
@@ -16,7 +28,8 @@ function Header() {
             </div>
 
             <div className={cx('header__info')}>
-                <span>Hung Nguyen</span>
+                <span>{infoUser.display_name}</span>
+
                 <div className={cx('header__avatar')}>
                     <Tooltip
                         placement="bottomRight"
@@ -38,7 +51,7 @@ function Header() {
                             </div>
                         )}
                     >
-                        <Avatar icon={<UserOutlined />} />
+                        <Avatar src={avatar} icon={<UserOutlined />} />
                     </Tooltip>
                 </div>
             </div>
