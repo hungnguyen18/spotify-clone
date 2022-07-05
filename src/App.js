@@ -5,12 +5,14 @@ import Content from './components/Content';
 import Header from './components/Header';
 
 import Sidebar from './components/Sidebar';
+import Login from './pages/Auth/Login';
 
 function App() {
     return (
         <Router>
             <div className="App">
-                <Row>
+                <Login />
+                {/* <Row>
                     <Col xl={3} span={0}>
                         <Sidebar />
                     </Col>
@@ -18,7 +20,7 @@ function App() {
                     <Col xl={21} md={24} sm={24} span={24}>
                         <Content />
                     </Col>
-                </Row>
+                </Row> */}
             </div>
         </Router>
     );

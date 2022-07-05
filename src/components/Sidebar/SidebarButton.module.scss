@@ -13,14 +13,13 @@
 
     &:hover {
         background-color: rgba(232, 235, 237, 1);
-        border-color: rgb(17 94 89/1);
         color: rgb(10 39 37/1);
         transform: scale(1.05);
     }
 
     &.active {
         background-color: rgba(232, 235, 237, 1);
-        border-color: rgb(17 94 89/1);
+        border-color: var(--primary-color);
         color: rgb(10 39 37/1);
         transform: scale(1.05);
     }
