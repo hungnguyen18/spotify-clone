@@ -6,10 +6,11 @@
     position: absolute;
     right: 0;
     left: 0;
+    z-index: 1;
 }
 
 .content__content {
     height: 92vh;
     overflow-y: overlay;
-    padding-top: 100px;
+    padding: 80px 10px 10px 10px;
 }
