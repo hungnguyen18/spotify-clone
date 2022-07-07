@@ -1,35 +1,49 @@
 .sidebar__container {
-    height: 92vh;
-    text-align: center;
+    height: 89vh;
+    background-color: black;
+}
+
+.sidebar__wrapper {
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+    padding-top: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.sidebar__wrapper {
-    margin: 0 auto;
-    width: 90%;
-    text-align: center;
-}
-
 .sidebar__title {
-    font-size: 2.5rem;
-    line-height: 1;
-    font-weight: 700;
-    margin: 20px 0 40px 0;
-
-    &:hover {
-        color: rgb(10 39 37/1);
-    }
+    height: 40px;
+    max-width: 131px;
+    width: 100%;
+    color: var(--white);
 }
 
-.sidebar__action {
+.sidebar__menu {
+    padding-top: 35px;
 }
 
-.sidebar__footer {
-    font-size: 1rem;
-    color: #4a4a4a;
+.sidebar__playlist {
+    flex: 1;
+    padding-top: 20px;
 }
 
-.sidebar__info {
+.sidebar__opt {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    fill: currentColor;
+    padding: 15px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+    cursor: pointer;
+}
+
+.sidebar__icon {
+    font-size: 1.9rem;
+    margin-right: 20px;
 }

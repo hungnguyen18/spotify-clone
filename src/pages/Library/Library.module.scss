@@ -1,5 +1,6 @@
 .library__title {
     margin-bottom: 50px;
+    color: #fff;
 }
 
 .playlist__container {
@@ -39,6 +40,7 @@
     line-clamp: 1;
     -webkit-box-orient: vertical;
     font-size: 1.7rem;
+    color: var(--white);
     font-weight: 600;
 }
 

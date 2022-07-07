@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
@@ -9,13 +9,34 @@ import styles from './Content.module.scss';
 const cx = classNames.bind(styles);
 
 function Content() {
+    // useEffect(() => {
+    //     const body = document.getElementById('body');
+
+    //     const shrinkHeader = () => {
+    //         if (
+    //             body.scrollTop > 60 ||
+    //             document.documentElement.scrollTop > 60
+    //         ) {
+    //             console.log('ok');
+    //         } else {
+    //             console.log('er');
+    //         }
+    //     };
+
+    //     body.addEventListener('scroll', shrinkHeader);
+
+    //     return () => {
+    //         body.removeEventListener('scroll', shrinkHeader);
+    //     };
+    // }, []);
+
     return (
         <div className={cx('content__container')}>
             <div className={cx('content__header')}>
                 <Header />
             </div>
 
-            <div className={cx('content__content')}>
+            <div id="body" className={cx('content__body')}>
                 <Routes>
                     {pageRoutes.map((route, index) => {
                         const Page = route.component;

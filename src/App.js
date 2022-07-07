@@ -30,6 +30,16 @@ function App() {
         }
     }, []);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            window.localStorage.removeItem('token');
+
+            window.location.reload();
+        }, (3600 - 60) * 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <Router>
             <div className="App">
@@ -37,20 +47,20 @@ function App() {
                     <Login />
                 ) : (
                     <>
-                        <Row>
-                            <Col xl={3} span={0}>
-                                <Sidebar />
-                            </Col>
+                        <div className="app__container">
+                            <Row>
+                                <Col xl={4} span={0}>
+                                    <Sidebar />
+                                </Col>
+                                <Col xl={20} span={24}>
+                                    <Content />
+                                </Col>
+                            </Row>
 
-                            <Col xl={21} md={24} sm={24} span={24}>
-                                <Content />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
+                            <div className="app__player">
                                 <Player />
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
                     </>
                 )}
             </div>
