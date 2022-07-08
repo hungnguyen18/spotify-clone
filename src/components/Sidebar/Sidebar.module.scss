@@ -1,5 +1,5 @@
 .sidebar__container {
-    height: 86vh;
+    height: 88vh;
     background-color: black;
 }
 
@@ -27,6 +27,15 @@
 .sidebar__playlist {
     flex: 1;
     padding-top: 20px;
+}
+
+.playlist__menu {
+    height: 285px;
+    overflow: overlay;
+    border-top: 1px solid #282828;
+    padding-top: 7px;
+    margin-top: 20px;
+    cursor: pointer;
 }
 
 .sidebar__opt {

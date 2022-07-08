@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 import styles from './Sidebar.module.scss';
 import SidebarMenuItem from './SidebarMenuItem';
-
 import {
     CreateIcon,
     DownloadIcon,
@@ -15,10 +15,25 @@ import {
     SearchIcon,
     SearchIconActive,
 } from '../Icon';
+import apiClient from '../../spotify';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
+    const [playlists, setPlaylists] = useState(null);
+
+    useEffect(() => {
+        apiClient.get('me/playlists').then((response) => {
+            setPlaylists(response.data.items);
+        });
+    }, []);
+
+    const navigate = useNavigate();
+
+    const playPlaylist = (id) => {
+        navigate('/player', { state: { id: id } });
+    };
+
     return (
         <div className={cx('sidebar__container')}>
             <div className={cx('sidebar__wrapper')}>
@@ -54,17 +69,30 @@ function Sidebar() {
                 </div>
 
                 <div className={cx('sidebar__playlist')}>
-                    <SidebarMenuItem
-                        title="Create Playlist"
-                        to="/create"
-                        icon={<CreateIcon />}
-                    />
-                    <SidebarMenuItem
-                        title="Liked Songs"
-                        to="/liked"
-                        icon={<LikeIcon />}
-                        gradient="gradient"
-                    />
+                    <div className={cx('playlist__act')}>
+                        <SidebarMenuItem
+                            title="Create Playlist"
+                            to="/create"
+                            icon={<CreateIcon />}
+                        />
+                        <SidebarMenuItem
+                            title="Liked Songs"
+                            to="/liked"
+                            icon={<LikeIcon />}
+                            gradient="gradient"
+                        />
+                    </div>
+
+                    <div className={cx('playlist__menu')}>
+                        {playlists?.map((playlist) => (
+                            <SidebarMenuItem
+                                key={playlist.id}
+                                playlist={playlist}
+                                to={playlist.id}
+                                playPlaylist={playPlaylist}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 <span className={cx('sidebar__opt')}>
