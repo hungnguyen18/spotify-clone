@@ -58,12 +58,9 @@ a {
 //App
 .app__container {
     width: 100vw;
-    position: relative;
 
     .app__player {
         width: 100vw;
-        position: fixed;
-        bottom: 0;
         z-index: 999 !important;
     }
 }

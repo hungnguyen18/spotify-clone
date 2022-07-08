@@ -13,7 +13,7 @@ function Login() {
             <div className={cx('login__form')}>
                 <h1 className={cx('login__title')}>
                     <div className={cx('login__subtitle')}>LOGIN</div> <br />
-                    SUJICLOUD
+                    SPOTIFY
                 </h1>
 
                 <a className={cx('login__btn')} href={loginEndpoint}>
