@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
@@ -9,31 +9,33 @@ import styles from './Content.module.scss';
 const cx = classNames.bind(styles);
 
 function Content() {
-    // useEffect(() => {
-    //     const body = document.getElementById('body');
+    const [shrink, setShrink] = useState('');
 
-    //     const shrinkHeader = () => {
-    //         if (
-    //             body.scrollTop > 60 ||
-    //             document.documentElement.scrollTop > 60
-    //         ) {
-    //             console.log('ok');
-    //         } else {
-    //             console.log('er');
-    //         }
-    //     };
+    useEffect(() => {
+        const body = document.getElementById('body');
 
-    //     body.addEventListener('scroll', shrinkHeader);
+        const shrinkHeader = () => {
+            if (
+                body.scrollTop > 50 ||
+                document.documentElement.scrollTop > 50
+            ) {
+                setShrink('shrink');
+            } else {
+                setShrink('');
+            }
+        };
 
-    //     return () => {
-    //         body.removeEventListener('scroll', shrinkHeader);
-    //     };
-    // }, []);
+        body.addEventListener('scroll', shrinkHeader);
+
+        return () => {
+            body.removeEventListener('scroll', shrinkHeader);
+        };
+    }, []);
 
     return (
         <div className={cx('content__container')}>
             <div className={cx('content__header')}>
-                <Header />
+                <Header shrink={shrink} />
             </div>
 
             <div id="body" className={cx('content__body')}>

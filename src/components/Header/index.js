@@ -6,10 +6,11 @@ import { Avatar, Tooltip } from 'antd';
 import styles from './Header.module.scss';
 import Search from '../Search';
 import apiClient from '../../spotify';
+import { ArrowDownIcon, ArrowUpIcon } from '../Icon';
 
 const cx = classNames.bind(styles);
 
-function Header() {
+function Header({ shrink }) {
     const [infoUser, setInfoUser] = useState({});
     const [avatar, setAvatar] = useState('');
 
@@ -22,38 +23,18 @@ function Header() {
     }, []);
 
     return (
-        <div className={cx('header__container')}>
-            <div className={cx('header__search')}>
-                <Search />
-            </div>
+        <div className={cx('header__container', shrink)}>
+            <div className={cx('header__search')}>{/* <Search /> */}</div>
 
             <div className={cx('header__info')}>
+                <div className={cx('header__avatar')}>
+                    <Avatar size={28} src={avatar} icon={<UserOutlined />} />
+                </div>
+
                 <span>{infoUser.display_name}</span>
 
-                <div className={cx('header__avatar')}>
-                    <Tooltip
-                        placement="bottomRight"
-                        trigger={'click'}
-                        color={'#fff'}
-                        title={() => (
-                            <div className={cx('menu')}>
-                                <div className={cx('menu__title')}>
-                                    <span>Setting</span>
-                                </div>
-                                <div className={cx('menu__action')}>
-                                    <div className={cx('menu__item')}>
-                                        <LogoutOutlined
-                                            className={cx('menu__icon')}
-                                        />
-                                        Log out
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    >
-                        <Avatar src={avatar} icon={<UserOutlined />} />
-                    </Tooltip>
-                </div>
+                <ArrowDownIcon className={cx('icon-down')} />
+                <ArrowUpIcon className={cx('icon-up')} />
             </div>
         </div>
     );

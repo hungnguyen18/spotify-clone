@@ -1,9 +1,15 @@
 .header__container {
     display: flex;
+    height: 64px;
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    padding: 10px 0;
+    padding: 16px 32px;
+    transition: all ease 0.5s;
+
+    &.shrink {
+        background-color: #070707;
+    }
 }
 
 .header__search {
@@ -13,46 +19,42 @@
 .header__info {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    background-color: #050505;
+    padding: 4px 0;
+    border-radius: 50px;
+    cursor: pointer;
 
     span {
         color: var(--white);
+        margin: 0 5px;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .icon-up {
+        display: none;
+    }
+
+    .icon-up,
+    .icon-down {
+        fill: var(--white);
+        margin-right: 5px;
+    }
+
+    &:hover {
+        background-color: #282828;
+
+        .icon-up {
+            display: block;
+        }
+
+        .icon-down {
+            display: none;
+        }
     }
 }
 
 .header__avatar {
-    margin: 0 10px;
     cursor: pointer;
-}
-
-//Menu
-.menu {
-    width: 100%;
-    padding: 0 20px;
-    color: var(--black);
-}
-
-.menu__title {
-    margin-bottom: 20px;
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: rgb(109, 109, 109);
-}
-
-.menu__action {
-    text-align: center;
-}
-
-.menu__item {
-    padding: 10px 0;
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 400;
-
-    &:hover {
-        color: rgb(10 39 37/1);
-    }
-}
-
-.menu__icon {
-    margin-right: 5px;
 }

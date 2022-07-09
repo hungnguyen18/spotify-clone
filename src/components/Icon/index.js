@@ -145,3 +145,35 @@ export const DownloadIcon = ({
         <path d="M12 6.05a1 1 0 011 1v7.486l1.793-1.793a1 1 0 111.414 1.414L12 18.364l-4.207-4.207a1 1 0 111.414-1.414L11 14.536V7.05a1 1 0 011-1z"></path>
     </svg>
 );
+
+export const ArrowDownIcon = ({
+    width = '1.6rem',
+    height = '1.6rem',
+    className,
+}) => (
+    <svg
+        role="img"
+        height={height}
+        width={width}
+        className={className}
+        viewBox="0 0 16 16"
+    >
+        <path d="M14 6l-6 6-6-6h12z"></path>
+    </svg>
+);
+
+export const ArrowUpIcon = ({
+    width = '1.6rem',
+    height = '1.6rem',
+    className,
+}) => (
+    <svg
+        role="img"
+        height={height}
+        width={width}
+        className={className}
+        viewBox="0 0 16 16"
+    >
+        <path d="M14 10L8 4l-6 6h12z"></path>
+    </svg>
+);
