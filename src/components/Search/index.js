@@ -16,8 +16,6 @@ function Search() {
                 className={cx('search__input')}
                 placeholder="Search..."
             />
-
-            <CloseCircleOutlined />
         </div>
     );
 }

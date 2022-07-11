@@ -26,6 +26,10 @@ function Header({ shrink }) {
                 <Search />
             </div>
 
+            <div className={cx('header__btn')}>
+                <Button outline>Upgrade</Button>
+            </div>
+
             <User />
         </div>
     );
