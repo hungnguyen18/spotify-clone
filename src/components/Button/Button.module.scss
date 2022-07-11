@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    + .wrapper {
+        margin-left: 16px;
+    }
+
+    &.icon {
+        width: 32px;
+        height: 32px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 50px;
+        fill: var(--white);
+    }
+
+    &.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}

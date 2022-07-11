@@ -194,3 +194,35 @@ export const ShortcutIcon = ({
         <path d="M15 1v4.993a.75.75 0 11-1.5 0V3.56L8.78 8.28a.75.75 0 01-1.06-1.06l4.72-4.72h-2.433a.75.75 0 010-1.5H15z"></path>
     </svg>
 );
+
+export const ArrowLeftIcon = ({
+    width = '2.4rem',
+    height = '2.4rem',
+    className,
+}) => (
+    <svg
+        role="img"
+        height={height}
+        width={width}
+        className={className}
+        viewBox="0 0 24 24"
+    >
+        <path d="M15.957 2.793a1 1 0 010 1.414L8.164 12l7.793 7.793a1 1 0 11-1.414 1.414L5.336 12l9.207-9.207a1 1 0 011.414 0z"></path>
+    </svg>
+);
+
+export const ArrowRightIcon = ({
+    width = '2.4rem',
+    height = '2.4rem',
+    className,
+}) => (
+    <svg
+        role="img"
+        height={height}
+        width={width}
+        className={className}
+        viewBox="0 0 24 24"
+    >
+        <path d="M8.043 2.793a1 1 0 000 1.414L15.836 12l-7.793 7.793a1 1 0 101.414 1.414L18.664 12 9.457 2.793a1 1 0 00-1.414 0z"></path>
+    </svg>
+);
