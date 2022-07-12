@@ -17,7 +17,13 @@
 }
 
 .header__search {
-    margin: 0 auto;
+    flex: 1;
+    padding-left: 20px;
+}
+
+.header__user {
+    display: flex;
+    align-items: center;
 }
 
 .header__btn {

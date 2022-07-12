@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './Library.module.scss';
 import apiClient from '../../spotify';
 import { useNavigate } from 'react-router-dom';
-import { Col, Row } from 'antd';
+import { Row } from 'antd';
 import Playlist from '../../components/Playlist';
 
 const cx = classNames.bind(styles);

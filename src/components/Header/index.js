@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { useLocation } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 import Search from '../Search';
-
 import User from './User';
 import Button from '../Button';
 import { ArrowLeftIcon, ArrowRightIcon } from '../Icon';
@@ -11,6 +11,8 @@ import { ArrowLeftIcon, ArrowRightIcon } from '../Icon';
 const cx = classNames.bind(styles);
 
 function Header({ shrink }) {
+    const location = useLocation();
+
     return (
         <div className={cx('header__container', shrink)}>
             <div className={cx('header__act')}>
@@ -22,15 +24,22 @@ function Header({ shrink }) {
                 </Button>
             </div>
 
-            <div className={cx('header__search')}>
-                <Search />
-            </div>
+            {location.pathname === '/search' && (
+                <div className={cx('header__search')}>
+                    <Search />
+                </div>
+            )}
 
-            <div className={cx('header__btn')}>
-                <Button outline>Upgrade</Button>
-            </div>
+            <div className={cx('header__user')}>
+                {(location.pathname === '/' ||
+                    location.pathname === '/playlist') && (
+                    <div className={cx('header__btn')}>
+                        <Button outline>Upgrade</Button>
+                    </div>
+                )}
 
-            <User />
+                <User />
+            </div>
         </div>
     );
 }

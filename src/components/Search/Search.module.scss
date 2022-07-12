@@ -1,19 +1,28 @@
 .search__container {
     width: 364px;
-    height: 40px;
-    border: 1px solid rgb(151, 151, 151);
-    border-radius: var(--radius);
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    font-size: 1.7rem;
+    border: 0;
+    border-radius: 500px;
+    color: #000;
+    height: 40px;
+    padding: 0 10px;
+    text-overflow: ellipsis;
     background-color: var(--white);
 }
 
 .search__icon {
-    margin: 0 10px;
 }
 
 .search__input {
-    width: 90%;
+    width: 100%;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 6px;
     background-color: transparent;
+}
+
+.search__clear {
+    height: 24px;
 }

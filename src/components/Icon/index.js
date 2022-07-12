@@ -226,3 +226,36 @@ export const ArrowRightIcon = ({
         <path d="M8.043 2.793a1 1 0 000 1.414L15.836 12l-7.793 7.793a1 1 0 101.414 1.414L18.664 12 9.457 2.793a1 1 0 00-1.414 0z"></path>
     </svg>
 );
+
+export const BigSearchIcon = ({
+    width = '2.4rem',
+    height = '2.4rem',
+    className,
+}) => (
+    <svg
+        role="img"
+        height={height}
+        width={width}
+        className={className}
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+    >
+        <path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 101.414-1.414l-4.344-4.344a9.157 9.157 0 002.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z"></path>
+    </svg>
+);
+
+export const ClearSearchIcon = ({
+    width = '2.4rem',
+    height = '2.4rem',
+    className,
+}) => (
+    <svg
+        role="img"
+        height={height}
+        width={width}
+        className={className}
+        viewBox="0 0 24 24"
+    >
+        <path d="M3.293 3.293a1 1 0 011.414 0L12 10.586l7.293-7.293a1 1 0 111.414 1.414L13.414 12l7.293 7.293a1 1 0 01-1.414 1.414L12 13.414l-7.293 7.293a1 1 0 01-1.414-1.414L10.586 12 3.293 4.707a1 1 0 010-1.414z"></path>
+    </svg>
+);
