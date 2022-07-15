@@ -13,20 +13,19 @@ function Playlist({ playlist, playPlaylist }) {
                 className={cx('playlist__container')}
                 onClick={() => playPlaylist(playlist.id)}
             >
-                <img
-                    src={playlist.images[0].url}
-                    alt=""
-                    className={cx('playlist__img')}
-                />
+                <div className={cx('playlist__wrapper')}>
+                    <div className={cx('playlist__img')}>
+                        <img src={playlist.images[0].url} alt="" />
+                    </div>
+                    <div className={cx('playlist__info')}>
+                        <span className={cx('playlist__title')}>
+                            {playlist.name}
+                        </span>
 
-                <div className={cx('playlist__info')}>
-                    <span className={cx('playlist__title')}>
-                        {playlist.name}
-                    </span>
-
-                    <span className={cx('playlist__subtitle')}>
-                        {playlist.tracks.total} Songs
-                    </span>
+                        <span className={cx('playlist__subtitle')}>
+                            By {playlist.owner.display_name}
+                        </span>
+                    </div>
                 </div>
             </div>
         </Col>

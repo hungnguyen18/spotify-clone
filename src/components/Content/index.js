@@ -16,8 +16,8 @@ function Content() {
 
         const shrinkHeader = () => {
             if (
-                body.scrollTop > 50 ||
-                document.documentElement.scrollTop > 50
+                body.scrollTop > 30 ||
+                document.documentElement.scrollTop > 30
             ) {
                 setShrink('shrink');
             } else {

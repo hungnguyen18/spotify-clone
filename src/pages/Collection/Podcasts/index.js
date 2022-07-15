@@ -6,7 +6,7 @@ import styles from './Podcasts.module.scss';
 const cx = classNames.bind(styles);
 
 function Podcasts() {
-    return <div>Podcasts</div>;
+    return <div className="container">Podcasts</div>;
 }
 
 export default Podcasts;

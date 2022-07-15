@@ -6,7 +6,7 @@ import styles from './Artists.module.scss';
 const cx = classNames.bind(styles);
 
 function Artists() {
-    return <div>Artists</div>;
+    return <div className="container">Artists</div>;
 }
 
 export default Artists;

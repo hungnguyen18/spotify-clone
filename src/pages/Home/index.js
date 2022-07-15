@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 function Home() {
     return (
-        <div className={cx('container')}>
+        <div className="container">
             <div>hung</div>
             <div>hung</div>
             <div>hung</div>

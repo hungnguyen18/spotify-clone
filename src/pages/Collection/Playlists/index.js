@@ -18,6 +18,8 @@ function Playlists() {
         });
     }, []);
 
+    console.log(playlists);
+
     const navigate = useNavigate();
 
     const playPlaylist = (id) => {
@@ -25,17 +27,19 @@ function Playlists() {
     };
 
     return (
-        <div className={cx('library__container')}>
-            <h2 className={cx('library__title')}>My playlist</h2>
-            <Row>
-                {playlists?.map((playlist) => (
-                    <Playlist
-                        key={playlist.id}
-                        playlist={playlist}
-                        playPlaylist={playPlaylist}
-                    />
-                ))}
-            </Row>
+        <div className="container">
+            <div className={cx('library__container')}>
+                <h3 className={cx('library__title')}>Playlists</h3>
+                <Row gutter={[20, 20]}>
+                    {playlists?.map((playlist) => (
+                        <Playlist
+                            key={playlist.id}
+                            playlist={playlist}
+                            playPlaylist={playPlaylist}
+                        />
+                    ))}
+                </Row>
+            </div>
         </div>
     );
 }
