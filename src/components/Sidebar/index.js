@@ -62,7 +62,7 @@ function Sidebar() {
                     />
                     <SidebarMenuItem
                         title="Your Library"
-                        to="/library"
+                        to="/collection/playlists"
                         icon={<LibraryIcon />}
                         iconActive={<LibraryIconActive />}
                     />

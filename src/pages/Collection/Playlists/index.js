@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-
-import styles from './Library.module.scss';
-import apiClient from '../../spotify';
 import { useNavigate } from 'react-router-dom';
 import { Row } from 'antd';
-import Playlist from '../../components/Playlist';
+
+import styles from './Playlists.module.scss';
+import apiClient from '../../../spotify';
+import Playlist from '../../../components/Playlist';
 
 const cx = classNames.bind(styles);
 
-function Library() {
+function Playlists() {
     const [playlists, setPlaylists] = useState(null);
 
     useEffect(() => {
@@ -40,4 +40,4 @@ function Library() {
     );
 }
 
-export default Library;
+export default Playlists;
