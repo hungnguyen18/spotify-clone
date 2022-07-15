@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 import Search from '../Search';
@@ -11,7 +11,18 @@ import { ArrowLeftIcon, ArrowRightIcon } from '../Icon';
 const cx = classNames.bind(styles);
 
 function Header({ shrink }) {
+    const [locationMenu, setLocationMenu] = useState('playlists');
+
     const location = useLocation();
+
+    const pathMenu =
+        location.pathname === '/collection/playlists'
+            ? '/collection/playlists'
+            : `/collection/${locationMenu}`;
+
+    const handleSetLocationMenu = (nameLocation) => {
+        setLocationMenu(nameLocation);
+    };
 
     return (
         <div className={cx('header__container', shrink)}>
@@ -25,8 +36,54 @@ function Header({ shrink }) {
             </div>
 
             {location.pathname === '/search' && (
-                <div className={cx('header__search')}>
+                <div className={cx('header__wrapper')}>
                     <Search />
+                </div>
+            )}
+
+            {location.pathname === pathMenu && (
+                <div className={cx('header__wrapper')}>
+                    <div className={cx('header__menu')}>
+                        <NavLink
+                            className={(nav) =>
+                                cx('menu__item', { active: nav.isActive })
+                            }
+                            to="/collection/playlists"
+                            onClick={() => handleSetLocationMenu('playlists')}
+                        >
+                            <span>Playlist</span>
+                        </NavLink>
+
+                        <NavLink
+                            className={(nav) =>
+                                cx('menu__item', { active: nav.isActive })
+                            }
+                            to="/collection/podcasts"
+                            onClick={() => handleSetLocationMenu('podcasts')}
+                        >
+                            <span>Podcasts</span>
+                        </NavLink>
+
+                        <NavLink
+                            className={(nav) =>
+                                cx('menu__item', { active: nav.isActive })
+                            }
+                            to="/collection/artists"
+                            onClick={() => handleSetLocationMenu('artists')}
+                        >
+                            <span>Artists</span>
+                        </NavLink>
+
+                        <NavLink
+                            className={(nav) =>
+                                cx('menu__item', { active: nav.isActive })
+                            }
+                            to="/collection/albums"
+                            onClick={() => handleSetLocationMenu('albums')}
+                        >
+                            <span>Albums</span>
+                        </NavLink>
+                    </div>
                 </div>
             )}
 
