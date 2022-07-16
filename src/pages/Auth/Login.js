@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { FaSpotify } from 'react-icons/fa';
 
 import styles from './Login.module.scss';
-import { loginEndpoint } from '../../spotify';
+import { loginEndpoint } from '../../api/spotifyAuth';
 
 const cx = classNames.bind(styles);
 

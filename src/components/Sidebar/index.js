@@ -15,7 +15,7 @@ import {
     SearchIcon,
     SearchIconActive,
 } from '../Icon';
-import apiClient from '../../spotify';
+import spotifyApi from '../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
 
@@ -23,9 +23,17 @@ function Sidebar() {
     const [playlists, setPlaylists] = useState(null);
 
     useEffect(() => {
-        apiClient.get('me/playlists').then((response) => {
-            setPlaylists(response.data.items);
-        });
+        const myPlaylists = async () => {
+            try {
+                const res = await spotifyApi.getMyPlaylists();
+
+                setPlaylists(res.items);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        myPlaylists();
     }, []);
 
     const navigate = useNavigate();

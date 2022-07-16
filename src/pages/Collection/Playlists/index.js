@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Row } from 'antd';
 
 import styles from './Playlists.module.scss';
-import apiClient from '../../../spotify';
 import Playlist from '../../../components/Playlist';
+import spotifyApi from '../../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
 
@@ -13,12 +13,18 @@ function Playlists() {
     const [playlists, setPlaylists] = useState(null);
 
     useEffect(() => {
-        apiClient.get('me/playlists').then((response) => {
-            setPlaylists(response.data.items);
-        });
-    }, []);
+        const myPlaylists = async () => {
+            try {
+                const res = await spotifyApi.getMyPlaylists();
 
-    console.log(playlists);
+                setPlaylists(res.items);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        myPlaylists();
+    }, []);
 
     const navigate = useNavigate();
 

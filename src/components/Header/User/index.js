@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Avatar } from 'antd';
 import Tippy from '@tippyjs/react/headless';
 import { UserOutlined } from '@ant-design/icons';
 
 import styles from './User.module.scss';
-import apiClient from '../../../spotify';
 import { ArrowDownIcon, ArrowUpIcon, ShortcutIcon } from '../../Icon';
+import spotifyApi from '../../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
 
@@ -20,18 +20,20 @@ function User() {
     });
 
     useEffect(() => {
-        apiClient
-            .get('me')
-            .then((response) => {
-                setInfoUser(response.data);
+        const getMe = async () => {
+            try {
+                const res = await spotifyApi.getMe();
 
-                setAvatar(response.data.images[0].url);
-            })
-            .catch(() => {
+                setInfoUser(res);
+                setAvatar(res.images[0].url);
+            } catch {
                 alert('Login Timeout');
                 window.localStorage.removeItem('token');
                 window.location.reload();
-            });
+            }
+        };
+
+        getMe();
     }, []);
 
     const handleShowIcon = () => {
@@ -111,4 +113,4 @@ function User() {
     );
 }
 
-export default User;
+export default memo(User);

@@ -1,12 +1,12 @@
 import { Col, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { setClientToken } from './api/axiosClient';
 import Content from './components/Content';
 import Player from './components/Player';
 
 import Sidebar from './components/Sidebar';
 import Login from './pages/Auth/Login';
-import { setClientToken } from './spotify';
 
 function App() {
     const [token, setToken] = useState('');
@@ -28,16 +28,6 @@ function App() {
 
             setClientToken(token);
         }
-    }, []);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            window.localStorage.removeItem('token');
-
-            window.location.reload();
-        }, (3600 - 60) * 1000);
-
-        return () => clearInterval(interval);
     }, []);
 
     return (
