@@ -20,11 +20,18 @@ function User() {
     });
 
     useEffect(() => {
-        apiClient.get('me').then((response) => {
-            setInfoUser(response.data);
+        apiClient
+            .get('me')
+            .then((response) => {
+                setInfoUser(response.data);
 
-            setAvatar(response.data.images[0].url);
-        });
+                setAvatar(response.data.images[0].url);
+            })
+            .catch(() => {
+                alert('Login Timeout');
+                window.localStorage.removeItem('token');
+                window.location.reload();
+            });
     }, []);
 
     const handleShowIcon = () => {
