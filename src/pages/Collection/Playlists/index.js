@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
-import { Row } from 'antd';
+import { Col, Row } from 'antd';
 
 import styles from './Playlists.module.scss';
 import Playlist from '../../../components/Playlist';
@@ -37,12 +37,17 @@ function Playlists() {
             <div className={cx('library__container')}>
                 <h3 className={cx('library__title')}>Playlists</h3>
                 <Row gutter={[20, 20]}>
+                    <Col xl={8} md={12} sm={24} xs={24}>
+                        <Playlist liked />
+                    </Col>
+
                     {playlists?.map((playlist) => (
-                        <Playlist
-                            key={playlist.id}
-                            playlist={playlist}
-                            playPlaylist={playPlaylist}
-                        />
+                        <Col xl={4} md={6} sm={12} xs={12} key={playlist.id}>
+                            <Playlist
+                                playlist={playlist}
+                                playPlaylist={playPlaylist}
+                            />
+                        </Col>
                     ))}
                 </Row>
             </div>

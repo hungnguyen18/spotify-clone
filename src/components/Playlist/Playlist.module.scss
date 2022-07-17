@@ -7,7 +7,7 @@
     align-items: center;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
 
     &:hover {
         background-color: #282828;
@@ -40,24 +40,25 @@
 
     .playlist__fade {
         display: none;
-    }
-
-    .fade__btn {
         position: absolute;
         right: 6%;
         bottom: 15%;
-        background-color: var(--primary-color);
-        padding: 12px;
-        display: flex;
-        border-radius: 500px;
-        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
-        animation: slideTop linear 0.3s;
-        transition: transform ease 0.3s;
-        cursor: default;
+        animation: slideTop linear 0.2s;
+    }
+}
 
-        &:hover {
-            transform: scale(1.05);
-        }
+.fade__btn {
+    background-color: var(--primary-color);
+    padding: 12px;
+    display: flex;
+    border-radius: 500px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    transition: transform ease 0.2s;
+    cursor: default;
+
+    &:hover {
+        transform: scale(1.05);
+        filter: brightness(1.05);
     }
 }
 
@@ -96,4 +97,93 @@
         bottom: 15%;
         opacity: 1;
     }
+}
+
+@keyframes slideTopLiked {
+    from {
+        bottom: 0%;
+        opacity: 0;
+    }
+    to {
+        bottom: 8%;
+        opacity: 1;
+    }
+}
+
+//Playlist liked
+.playlist__liked {
+    height: 100%;
+    background: linear-gradient(
+        149.46deg,
+        rgb(69, 10, 245),
+        rgb(142, 142, 229) 99.16%
+    );
+    border-radius: 4px;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover .liked__fade {
+        display: block;
+    }
+}
+
+.liked__wrapper {
+    position: relative;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.liked__song {
+    padding: 65px 0 30px 0;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.song {
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    .author {
+        margin-right: 5px;
+    }
+
+    .name__song {
+        color: #d5cff9;
+    }
+
+    + .song::before {
+        content: ' • ';
+        opacity: 0.7;
+    }
+}
+
+.liked__title {
+    h1 {
+        color: var(--white);
+        font-size: 3rem;
+        line-height: 0.3;
+        font-weight: 700;
+    }
+
+    span {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+}
+
+.liked__fade {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 8%;
+    animation: slideTopLiked linear 0.2s;
 }
