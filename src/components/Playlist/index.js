@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import { Col } from 'antd';
 
 import styles from './Playlist.module.scss';
+import { PlayIcon } from '../Icon';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,14 @@ function Playlist({ playlist, playPlaylist }) {
                 <div className={cx('playlist__wrapper')}>
                     <div className={cx('playlist__img')}>
                         <img src={playlist.images[0].url} alt="" />
+
+                        <div className={cx('playlist__fade')}>
+                            <div className={cx('fade__btn')}>
+                                <PlayIcon />
+                            </div>
+                        </div>
                     </div>
+
                     <div className={cx('playlist__info')}>
                         <span className={cx('playlist__title')}>
                             {playlist.name}
