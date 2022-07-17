@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import { Avatar } from 'antd';
+import { Avatar, Col, Row } from 'antd';
 import Tippy from '@tippyjs/react/headless';
 import { UserOutlined } from '@ant-design/icons';
 
@@ -61,6 +61,14 @@ function User() {
             offset={[-20, 10]}
             render={(attrs) => (
                 <div className={cx('menu__body')} tabIndex="-1" {...attrs}>
+                    <Row>
+                        <Col xl={0} span={24}>
+                            <div className={cx('menu__user')}>
+                                <span>{infoUser.display_name}</span>
+                            </div>
+                        </Col>
+                    </Row>
+
                     <div className={cx('menu__item')}>
                         <span>Account</span>
                         <ShortcutIcon />
@@ -94,7 +102,13 @@ function User() {
                     <Avatar size={28} src={avatar} icon={<UserOutlined />} />
                 </div>
 
-                <span>{infoUser.display_name}</span>
+                <span>
+                    <Row>
+                        <Col xl={24} span={0}>
+                            {infoUser.display_name}
+                        </Col>
+                    </Row>
+                </span>
 
                 <div
                     className={cx('icon-down')}

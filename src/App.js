@@ -39,10 +39,10 @@ function App() {
                     <>
                         <div className="app__container">
                             <Row>
-                                <Col xl={4} span={0}>
+                                <Col xl={4} md={6} span={0}>
                                     <Sidebar />
                                 </Col>
-                                <Col xl={20} span={24}>
+                                <Col xl={20} md={18} span={24}>
                                     <Content />
                                 </Col>
                             </Row>

@@ -37,12 +37,19 @@ function Playlists() {
             <div className={cx('library__container')}>
                 <h3 className={cx('library__title')}>Playlists</h3>
                 <Row gutter={[20, 20]}>
-                    <Col xl={8} md={12} sm={24} xs={24}>
+                    <Col xxl={6} xl={8} md={12} sm={24} xs={24}>
                         <Playlist liked />
                     </Col>
 
                     {playlists?.map((playlist) => (
-                        <Col xl={4} md={6} sm={12} xs={12} key={playlist.id}>
+                        <Col
+                            xxl={3}
+                            xl={4}
+                            md={6}
+                            sm={12}
+                            xs={12}
+                            key={playlist.id}
+                        >
                             <Playlist
                                 playlist={playlist}
                                 playPlaylist={playPlaylist}

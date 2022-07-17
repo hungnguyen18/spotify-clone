@@ -8,7 +8,7 @@ import { useRef } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Search() {
+function SearchInput() {
     const [searchValue, setSearchValue] = useState('');
     // const [searchResult, setSearchResult] = useState([]);
 
@@ -49,4 +49,4 @@ function Search() {
     );
 }
 
-export default Search;
+export default SearchInput;
