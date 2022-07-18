@@ -14,22 +14,29 @@ const cx = classNames.bind(styles);
 function Playlists() {
     const [playlists, setPlaylists] = useState(null);
     const [tracksLiked, setTracksLiked] = useState(null);
+    const [skeleton, setSkeleton] = useState(true);
 
     useEffect(() => {
         const myPlaylists = async () => {
             try {
                 const resPlaylists = await spotifyApi.getMyPlaylists();
-                const resTracks = await spotifyApi.getMyTracksLiked(6, 1);
+                const resTracks = await spotifyApi.getMyTracksLiked(3, 1);
 
                 setPlaylists(resPlaylists.items);
                 setTracksLiked(resTracks);
+                setTimeout(() => {
+                    setSkeleton(false);
+                }, 200);
             } catch (err) {
                 console.log(err);
+                setSkeleton(true);
             }
         };
 
         myPlaylists();
     }, []);
+
+    console.log(playlists?.length);
 
     const navigate = useNavigate();
 
@@ -39,12 +46,16 @@ function Playlists() {
 
     return (
         <div className="container">
-            {Playlists.length !== 0 ? (
+            {playlists?.length > 0 ? (
                 <div className={cx('library__container')}>
                     <h3 className={cx('library__title')}>Playlists</h3>
                     <Row gutter={[20, 20]}>
                         <Col xxl={6} xl={8} md={12} sm={24} xs={24}>
-                            <Playlist playlist={tracksLiked} liked />
+                            <Playlist
+                                playlist={tracksLiked}
+                                skeleton={skeleton}
+                                liked
+                            />
                         </Col>
 
                         {playlists?.map((playlist) => (

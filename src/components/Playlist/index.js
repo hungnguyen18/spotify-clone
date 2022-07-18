@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { Skeleton } from 'antd';
 
 import styles from './Playlist.module.scss';
 import { PlayIcon } from '../Icon';
@@ -7,20 +8,22 @@ import { memo } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Playlist({ playlist, playPlaylist, liked }) {
+function Playlist({ playlist, playPlaylist, skeleton, liked }) {
     return liked ? (
         <div className={cx('playlist__liked')}>
             <div className={cx('liked__wrapper')}>
                 <span className={cx('liked__song')}>
                     {playlist?.items.map((item) => (
-                        <span className={cx('song')} key={item.track.id}>
-                            <span className={cx('author')}>
-                                {item.track.artists[0].name}
+                        <Skeleton active loading={skeleton}>
+                            <span className={cx('song')} key={item.track.id}>
+                                <span className={cx('author')}>
+                                    {item.track.artists[0].name}
+                                </span>
+                                <span className={cx('name__song')}>
+                                    {item.track.name}
+                                </span>
                             </span>
-                            <span className={cx('name__song')}>
-                                {item.track.name}
-                            </span>
-                        </span>
+                        </Skeleton>
                     ))}
                 </span>
 
