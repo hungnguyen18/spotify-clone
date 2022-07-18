@@ -10,6 +10,7 @@ function Button({
     children,
     icon,
     className,
+    fill = false,
     outline = false,
     disabled = false,
     onClick,
@@ -22,6 +23,7 @@ function Button({
     const classes = cx('wrapper', {
         [className]: className,
         icon,
+        fill,
         outline,
         disabled,
     });
