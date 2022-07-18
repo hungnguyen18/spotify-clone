@@ -9,6 +9,10 @@ const spotifyApi = {
         const url = `me/playlists`;
         return axiosClient.get(url);
     },
+    getMyTracksLiked: (limit, offset) => {
+        const url = `me/tracks?limit=${limit}&offset=${offset}`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;

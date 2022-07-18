@@ -48,7 +48,7 @@ function App() {
                             </Row>
 
                             <div className="app__player">
-                                <Player />
+                                <Player token={token} />
                             </div>
                         </div>
                     </>

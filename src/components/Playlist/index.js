@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Playlist.module.scss';
 import { PlayIcon } from '../Icon';
+import { memo } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -11,23 +12,21 @@ function Playlist({ playlist, playPlaylist, liked }) {
         <div className={cx('playlist__liked')}>
             <div className={cx('liked__wrapper')}>
                 <span className={cx('liked__song')}>
-                    <span className={cx('song')}>
-                        <span className={cx('author')}>TORIENA</span>
-                        <span className={cx('name__song')}>
-                            プロサウンドの逆襲
+                    {playlist?.items.map((item) => (
+                        <span className={cx('song')} key={item.track.id}>
+                            <span className={cx('author')}>
+                                {item.track.artists[0].name}
+                            </span>
+                            <span className={cx('name__song')}>
+                                {item.track.name}
+                            </span>
                         </span>
-                    </span>
-                    <span className={cx('song')}>
-                        <span className={cx('author')}>TORIENA</span>
-                        <span className={cx('name__song')}>
-                            プロサウンドの逆襲
-                        </span>
-                    </span>
+                    ))}
                 </span>
 
                 <div className={cx('liked__title')}>
                     <h1>Liked Songs</h1>
-                    <span>2 liked songs</span>
+                    <span>{playlist?.total} liked songs</span>
                 </div>
 
                 <div className={cx('liked__fade')}>
@@ -67,4 +66,4 @@ function Playlist({ playlist, playPlaylist, liked }) {
     );
 }
 
-export default Playlist;
+export default memo(Playlist);
