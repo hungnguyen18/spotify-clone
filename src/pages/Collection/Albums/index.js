@@ -6,7 +6,11 @@ import styles from './Albums.module.scss';
 const cx = classNames.bind(styles);
 
 function Albums() {
-    return <div className="container">Albums</div>;
+    return (
+        <div className="container">
+            <div className="border--bottom">Albums</div>
+        </div>
+    );
 }
 
 export default Albums;

@@ -15,6 +15,7 @@
 
     &:hover .playlist__fade {
         display: block;
+        animation: slideIn linear 0.2s;
     }
 }
 
@@ -43,7 +44,6 @@
         position: absolute;
         right: 6%;
         bottom: 15%;
-        animation: slideTop linear 0.2s;
     }
 }
 
@@ -88,7 +88,7 @@
     font-weight: 500;
 }
 
-@keyframes slideTop {
+@keyframes slideIn {
     from {
         bottom: 10%;
         opacity: 0;

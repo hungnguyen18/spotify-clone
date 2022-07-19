@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 import SearchInput from '../SearchInput';

@@ -6,7 +6,11 @@ import styles from './Podcasts.module.scss';
 const cx = classNames.bind(styles);
 
 function Podcasts() {
-    return <div className="container">Podcasts</div>;
+    return (
+        <div className="container">
+            <div className="border--bottom">Podcasts</div>
+        </div>
+    );
 }
 
 export default Podcasts;

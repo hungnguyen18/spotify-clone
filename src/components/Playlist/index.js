@@ -14,8 +14,8 @@ function Playlist({ playlist, playPlaylist, skeleton, liked }) {
             <div className={cx('liked__wrapper')}>
                 <span className={cx('liked__song')}>
                     {playlist?.items.map((item) => (
-                        <Skeleton active loading={skeleton}>
-                            <span className={cx('song')} key={item.track.id}>
+                        <Skeleton active loading={skeleton} key={item.track.id}>
+                            <span className={cx('song')}>
                                 <span className={cx('author')}>
                                     {item.track.artists[0].name}
                                 </span>
