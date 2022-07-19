@@ -70,12 +70,14 @@ a {
 }
 
 .container {
-    padding-bottom: 100px;
     padding: 70px 32px 100px 32px;
 }
 
-.container--not-padding-top {
+.container-full {
     padding-bottom: 100px;
+}
+
+.container--not-padding-top {
     padding: 0px 32px 100px 32px;
 }
 
