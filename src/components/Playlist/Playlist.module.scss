@@ -47,21 +47,6 @@
     }
 }
 
-.fade__btn {
-    background-color: var(--primary-color);
-    padding: 12px;
-    display: flex;
-    border-radius: 500px;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
-    transition: transform ease 0.2s;
-    cursor: default;
-
-    &:hover {
-        transform: scale(1.05);
-        filter: brightness(1.05);
-    }
-}
-
 .playlist__info {
     width: 90%;
     padding-bottom: 30px;

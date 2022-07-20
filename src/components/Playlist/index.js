@@ -5,6 +5,7 @@ import { Skeleton } from 'antd';
 import styles from './Playlist.module.scss';
 import { PlayIcon } from '../Icon';
 import { memo } from 'react';
+import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
@@ -49,9 +50,9 @@ function Playlist({ playlist, playPlaylist, skeleton, liked }) {
                     <img src={playlist.images[0].url} alt="" />
 
                     <div className={cx('playlist__fade')}>
-                        <div className={cx('fade__btn')}>
+                        <Button play small>
                             <PlayIcon />
-                        </div>
+                        </Button>
                     </div>
                 </div>
 

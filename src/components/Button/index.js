@@ -10,9 +10,12 @@ function Button({
     children,
     icon,
     className,
+    play = false,
     fill = false,
     outline = false,
     disabled = false,
+    small = false,
+    large = false,
     onClick,
     to,
     href,
@@ -23,9 +26,12 @@ function Button({
     const classes = cx('wrapper', {
         [className]: className,
         icon,
+        play,
         fill,
         outline,
         disabled,
+        small,
+        large,
     });
 
     const props = {

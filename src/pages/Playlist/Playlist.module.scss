@@ -83,3 +83,37 @@
     height: 630px;
     background: linear-gradient(to bottom, transparent -10%, #121212 45%);
 }
+
+//Playlist actions
+.playlist__actions {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.playlist__heart-icon {
+    height: 32px;
+    margin: 0 30px;
+
+    .heart {
+        fill: #b2a4a9;
+        transition: all ease 0.2s;
+
+        &:hover {
+            fill: var(--white);
+        }
+    }
+
+    .heart-active {
+        fill: var(--primary-color);
+    }
+}
+
+.playlist__more {
+    fill: #b2a4a9;
+    transition: all ease 0.2s;
+
+    &:hover {
+        fill: var(--white);
+    }
+}

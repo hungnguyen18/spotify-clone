@@ -60,3 +60,26 @@
         background-color: rgba(255, 255, 255, 0.9);
     }
 }
+
+.play {
+    background-color: var(--primary-color);
+    display: flex;
+    border-radius: 500px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+    transition: transform ease 0.2s;
+    cursor: default;
+
+    &:hover {
+        transform: scale(1.05);
+        filter: brightness(1.05);
+    }
+}
+
+//Button size
+.small {
+    padding: 12px;
+}
+
+.large {
+    padding: 14px;
+}
