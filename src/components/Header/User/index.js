@@ -7,6 +7,7 @@ import { UserOutlined } from '@ant-design/icons';
 import styles from './User.module.scss';
 import { ArrowDownIcon, ArrowUpIcon, ShortcutIcon } from '../../Icon';
 import spotifyApi from '../../../api/spotifyApi';
+import Popper from '../../Popper';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,39 @@ function User() {
         iconUp: 'none',
         iconDown: 'block',
     });
+
+    const dataMenuPopper = [
+        {
+            id: 1,
+            name: 'Account',
+            icon: <ShortcutIcon />,
+        },
+        {
+            id: 2,
+            name: 'Profile',
+            icon: null,
+        },
+        {
+            id: 3,
+            name: 'Upgrade to Premium',
+            icon: <ShortcutIcon />,
+        },
+        {
+            id: 4,
+            name: 'Support',
+            icon: <ShortcutIcon />,
+        },
+        {
+            id: 5,
+            name: 'Download',
+            icon: <ShortcutIcon />,
+        },
+        {
+            id: 6,
+            name: 'Log out',
+            icon: null,
+        },
+    ];
 
     useEffect(() => {
         const getMe = async () => {
@@ -53,46 +87,11 @@ function User() {
     };
 
     return (
-        <Tippy
-            interactive
-            trigger="click"
-            onShow={handleShowIcon}
-            onHide={handleHideIcon}
+        <Popper
+            data={dataMenuPopper}
+            handleShowIcon={handleShowIcon}
+            handleHideIcon={handleHideIcon}
             offset={[-20, 10]}
-            render={(attrs) => (
-                <div className={cx('menu__body')} tabIndex="-1" {...attrs}>
-                    <Row>
-                        <Col xl={0} span={24}>
-                            <div className={cx('menu__user')}>
-                                <span>{infoUser.display_name}</span>
-                            </div>
-                        </Col>
-                    </Row>
-
-                    <div className={cx('menu__item')}>
-                        <span>Account</span>
-                        <ShortcutIcon />
-                    </div>
-                    <div className={cx('menu__item')}>
-                        <span>Profile</span>
-                    </div>
-                    <div className={cx('menu__item')}>
-                        <span>Upgrade to Premium</span>
-                        <ShortcutIcon />
-                    </div>
-                    <div className={cx('menu__item')}>
-                        <span>Support</span>
-                        <ShortcutIcon />
-                    </div>
-                    <div className={cx('menu__item')}>
-                        <span>Download</span>
-                        <ShortcutIcon />
-                    </div>
-                    <div className={cx('menu__item')}>
-                        <span>Log out</span>
-                    </div>
-                </div>
-            )}
         >
             <div
                 className={cx('user__info')}
@@ -123,7 +122,7 @@ function User() {
                     <ArrowUpIcon />
                 </div>
             </div>
-        </Tippy>
+        </Popper>
     );
 }
 
