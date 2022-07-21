@@ -25,31 +25,40 @@ function User() {
             id: 1,
             name: 'Account',
             icon: <ShortcutIcon />,
+            onClick: () => {},
         },
         {
             id: 2,
             name: 'Profile',
             icon: null,
+            onClick: () => {},
         },
         {
             id: 3,
             name: 'Upgrade to Premium',
             icon: <ShortcutIcon />,
+            onClick: () => {},
         },
         {
             id: 4,
             name: 'Support',
             icon: <ShortcutIcon />,
+            onClick: () => {},
         },
         {
             id: 5,
             name: 'Download',
             icon: <ShortcutIcon />,
+            onClick: () => {},
         },
         {
             id: 6,
             name: 'Log out',
             icon: null,
+            onClick: () => {
+                window.localStorage.removeItem('token');
+                window.location.reload();
+            },
         },
     ];
 

@@ -353,3 +353,18 @@ export const MoreMenuIcon = ({
         <path d="M4.5 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm15 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm-7.5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
     </svg>
 );
+
+export const SmallRightArrowIcon = ({
+    width = '1.6rem',
+    height = '1.6rem',
+    className,
+}) => (
+    <svg
+        height={height}
+        width={width}
+        className={className}
+        viewBox="0 0 16 16"
+    >
+        <path d="M14 10L8 4l-6 6h12z"></path>
+    </svg>
+);

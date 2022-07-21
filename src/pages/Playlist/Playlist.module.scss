@@ -94,6 +94,7 @@
 .playlist__heart-icon {
     height: 32px;
     margin: 0 30px;
+    transition: all ease 0.2s;
 
     .heart {
         fill: #b2a4a9;
@@ -107,13 +108,23 @@
     .heart-active {
         fill: var(--primary-color);
     }
+
+    &:active {
+        transform: scale(1.5);
+    }
 }
 
 .playlist__more {
+    height: 32px;
     fill: #b2a4a9;
     transition: all ease 0.2s;
 
     &:hover {
         fill: var(--white);
     }
+}
+
+.icon-arrow-right {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }

@@ -6,30 +6,55 @@ import styles from './Popper.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Popper({ children, data, handleShowIcon, handleHideIcon, offset }) {
-    const render = (attrs) => (
-        <div className={cx('popper__body')} tabIndex="-1" {...attrs}>
-            {data?.map((item) => (
-                <div className={cx('popper__item')} key={item.id}>
-                    <span>{item.name}</span>
-                    {item.icon}
-                </div>
-            ))}
-        </div>
-    );
+const Popper = React.forwardRef(
+    (
+        {
+            children,
+            data,
+            handleShowIcon,
+            handleHideIcon,
+            offset,
+            width = '196px',
+            placement = 'bottom',
+        },
+        ref
+    ) => {
+        const render = (attrs) => (
+            <div
+                className={cx('popper__body')}
+                style={{ width: width }}
+                tabIndex="-1"
+                {...attrs}
+            >
+                {data?.map((item) => (
+                    <div
+                        className={cx('popper__item')}
+                        key={item.id}
+                        onClick={item.onClick}
+                        style={item.styles}
+                    >
+                        <span>{item.name}</span>
+                        {item.icon}
+                    </div>
+                ))}
+            </div>
+        );
 
-    return (
-        <Tippy
-            interactive
-            trigger="click"
-            onShow={handleShowIcon}
-            onHide={handleHideIcon}
-            offset={offset}
-            render={render}
-        >
-            {children}
-        </Tippy>
-    );
-}
+        return (
+            <Tippy
+                interactive
+                ref={ref}
+                trigger="click"
+                onShow={handleShowIcon}
+                onHide={handleHideIcon}
+                offset={offset}
+                render={render}
+                placement={placement}
+            >
+                {children}
+            </Tippy>
+        );
+    }
+);
 
 export default Popper;

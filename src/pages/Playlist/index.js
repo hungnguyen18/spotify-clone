@@ -9,13 +9,77 @@ import {
     HeartIcon,
     MoreMenuIcon,
     PlayLargeIcon,
+    SmallRightArrowIcon,
 } from '../../components/Icon';
+import Popper from '../../components/Popper';
 
 const cx = classNames.bind(styles);
 
 function Playlist() {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
     const location = useLocation();
+
+    const dataMenuPopper = [
+        {
+            id: 1,
+            name: 'Add to queue',
+            icon: null,
+            onClick: () => {},
+            styles: null,
+        },
+        {
+            id: 2,
+            name: 'Go to playlist radio',
+            icon: null,
+            onClick: () => {},
+            styles: {
+                borderBottom: '1px solid #333333',
+            },
+        },
+        {
+            id: 3,
+            name: 'Add to profile',
+            icon: null,
+            onClick: () => {},
+            styles: {
+                borderBottom: '1px solid #333333',
+            },
+        },
+        {
+            id: 4,
+            name: 'Remove from Your Library',
+            icon: null,
+            onClick: () => {},
+            styles: {
+                borderBottom: '1px solid #333333',
+            },
+        },
+        {
+            id: 5,
+            name: 'Share',
+            icon: <SmallRightArrowIcon className={cx('icon-arrow-right')} />,
+            onClick: () => {},
+            styles: {
+                borderBottom: '1px solid #333333',
+            },
+        },
+        {
+            id: 6,
+            name: 'About recommendations',
+            icon: null,
+            onClick: () => {},
+            styles: {
+                borderBottom: '1px solid #333333',
+            },
+        },
+        {
+            id: 7,
+            name: 'Open in Desktop app',
+            icon: null,
+            onClick: () => {},
+            styles: null,
+        },
+    ];
 
     const handleSetActiveIcon = () => {
         const isActive = isActiveIcon === true ? false : true;
@@ -74,7 +138,15 @@ function Playlist() {
                                 )}
                             </div>
 
-                            <MoreMenuIcon className={cx('playlist__more')} />
+                            <Popper
+                                data={dataMenuPopper}
+                                offset={[90, 0]}
+                                width={'210px'}
+                            >
+                                <div className={cx('playlist__more')}>
+                                    <MoreMenuIcon />
+                                </div>
+                            </Popper>
                         </div>
 
                         <div className={cx('playlist__table')}>
