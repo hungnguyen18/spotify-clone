@@ -49,7 +49,7 @@ function Playlists() {
                     <div className={cx('library__container')}>
                         <h3 className={cx('library__title')}>Playlists</h3>
                         <Row gutter={[20, 20]}>
-                            <Col xxl={9} xl={8} md={18} sm={24} xs={24}>
+                            <Col xxl={6} xl={8} md={18} sm={24} xs={24}>
                                 <Playlist
                                     playlist={tracksLiked}
                                     skeleton={skeleton}

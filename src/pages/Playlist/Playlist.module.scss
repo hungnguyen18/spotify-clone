@@ -88,7 +88,7 @@
 .playlist__actions {
     display: flex;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 32px;
 }
 
 .playlist__heart-icon {
@@ -127,4 +127,50 @@
 .icon-arrow-right {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
+}
+
+//Table
+.playlist__table {
+    position: relative;
+    color: var(--white);
+
+    table {
+        width: 100%;
+    }
+}
+
+.table__thead {
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+    color: #b3b3b3;
+    height: 40px;
+}
+
+.table__row {
+    height: 50px;
+}
+
+.table__stt {
+    text-align: center;
+    width: 4%;
+}
+
+.table__title {
+    text-align: left;
+    width: 50%;
+}
+
+.table__album {
+    text-align: left;
+    width: 20%;
+}
+
+.table__date {
+    text-align: left;
+    width: 20%;
+}
+
+.table__time {
+    text-align: right;
+    width: 6%;
+    fill: currentColor;
 }

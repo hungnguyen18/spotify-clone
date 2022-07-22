@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Playlist.module.scss';
 import { useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
 import {
+    ClockIcon,
     HeartActiveIcon,
     HeartIcon,
     MoreMenuIcon,
@@ -86,6 +87,8 @@ function Playlist() {
         setIsActiveIcon(isActive);
     };
 
+    useEffect(() => {}, []);
+
     return (
         <div className={cx('playlist__container')}>
             <div className={cx('playlist__header')}>
@@ -152,21 +155,278 @@ function Playlist() {
                         <div className={cx('playlist__table')}>
                             <table>
                                 <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>TITLE</th>
-                                        <th>ALBUM</th>
-                                        <th>DATE ADDED</th>
-                                        <th>O</th>
+                                    <tr className={cx('table__thead')}>
+                                        <th className={cx('table__stt')}>#</th>
+                                        <th className={cx('table__title')}>
+                                            TITLE
+                                        </th>
+                                        <th className={cx('table__album')}>
+                                            ALBUM
+                                        </th>
+                                        <th className={cx('table__date')}>
+                                            DATE ADDED
+                                        </th>
+                                        <th className={cx('table__time')}>
+                                            <ClockIcon />
+                                        </th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Em của ngày hôm qua</td>
-                                        <td>Em của ngày hôm qua</td>
-                                        <td>5 days ago</td>
-                                        <td>1:55</td>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
+                                    </tr>
+                                    <tr className={cx('table__row')}>
+                                        <td className={cx('table__stt')}>1</td>
+                                        <td className={cx('table__title')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__album')}>
+                                            Em của ngày hôm qua
+                                        </td>
+                                        <td className={cx('table__date')}>
+                                            5 days ago
+                                        </td>
+                                        <td className={cx('table__time')}>
+                                            1:55
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

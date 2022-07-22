@@ -34,9 +34,9 @@ function Playlist({ playlist, playPlaylist, skeleton, liked }) {
                 </div>
 
                 <div className={cx('liked__fade')}>
-                    <div className={cx('fade__btn')}>
+                    <Button play small>
                         <PlayIcon />
-                    </div>
+                    </Button>
                 </div>
             </div>
         </div>
