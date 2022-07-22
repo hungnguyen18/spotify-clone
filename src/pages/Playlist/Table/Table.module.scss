@@ -1,0 +1,139 @@
+//Table
+.table {
+    position: relative;
+    color: #b3b3b3;
+
+    table {
+        width: 100%;
+    }
+}
+
+.table__thead {
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+    font-size: 1.4rem;
+}
+
+.table__row {
+    border: 1px solid transparent;
+    transition: all linear 0.2s;
+
+    &:hover {
+        background-color: hsla(0, 0%, 100%, 0.3);
+        color: var(--white);
+    }
+
+    &:hover .icon {
+        display: block;
+    }
+
+    &:hover .stt {
+        span {
+            display: none;
+        }
+    }
+}
+
+.table__stt {
+    text-align: center;
+    width: 5%;
+    fill: var(--white);
+
+    .stt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.icon {
+    display: none;
+}
+
+.table__title {
+    display: flex;
+    text-align: left;
+    width: 50%;
+    height: 70px;
+    align-items: center;
+
+    .title__img {
+        width: 40px;
+        height: 40px;
+        margin-right: 16px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1;
+            border-radius: 4px;
+        }
+    }
+
+    .title__info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title__name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--white);
+    }
+
+    .title__author {
+        font-size: 1.4rem;
+    }
+}
+
+.table__album {
+    text-align: left;
+    width: 20%;
+}
+
+.table__date {
+    text-align: left;
+    width: 15%;
+}
+
+.table__time {
+    text-align: center;
+    width: 10%;
+    fill: currentColor;
+
+    .time {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .time__icon {
+            transition: all ease 0.2s;
+
+            &:active {
+                transform: scale(1.5);
+            }
+        }
+
+        .icon {
+            fill: #b3b3b3;
+            transition: all ease 0.2s;
+
+            &:hover {
+                fill: var(--white);
+            }
+        }
+
+        .icon-active {
+            fill: var(--primary-color);
+        }
+    }
+}
+
+.time__song {
+    padding: 0 20px;
+}
+
+.icon-arrow-right {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}

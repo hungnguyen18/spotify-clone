@@ -15,6 +15,8 @@ const Popper = React.forwardRef(
             handleHideIcon,
             offset,
             width = '196px',
+            fontSize = '1.5rem',
+            padding = '0',
             placement = 'bottom',
         },
         ref
@@ -22,7 +24,7 @@ const Popper = React.forwardRef(
         const render = (attrs) => (
             <div
                 className={cx('popper__body')}
-                style={{ width: width }}
+                style={{ width: width, fontSize: fontSize, padding: padding }}
                 tabIndex="-1"
                 {...attrs}
             >
