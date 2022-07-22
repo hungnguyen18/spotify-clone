@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
+import moment from 'moment';
 
 import styles from './Table.module.scss';
 import {
@@ -14,7 +15,7 @@ import Popper from '../../../components/Popper';
 
 const cx = classNames.bind(styles);
 
-function Table() {
+function Table({ playlist }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
 
     const handleSetActiveIcon = () => {
@@ -112,78 +113,96 @@ function Table() {
                 </thead>
 
                 <tbody>
-                    <tr className={cx('table__row')}>
-                        <td className={cx('table__stt')}>
-                            <div className={cx('stt')}>
-                                <span>1</span>
-                                <PlayIcon
-                                    width="1.6rem"
-                                    height="1.6rem"
-                                    className={cx('icon')}
-                                />
-                            </div>
-                        </td>
-                        <td className={cx('table__title')}>
-                            <div className={cx('title__img')}>
-                                <img
-                                    src="https://i.scdn.co/image/ab67616d000048517096491a94e068a5fe8ac9cf"
-                                    alt=""
-                                />
-                            </div>
-
-                            <div className={cx('title__info')}>
-                                <span className={cx('title__name')}>
-                                    Petula Thomas
-                                </span>
-                                <span className={cx('title__author')}>
-                                    Govii
-                                </span>
-                            </div>
-                        </td>
-                        <td className={cx('table__album')}>Angels Below</td>
-                        <td className={cx('table__date')}>9 hours ago</td>
-                        <td className={cx('table__time')}>
-                            <div className={cx('time')}>
-                                <div
-                                    className={cx('time__icon')}
-                                    onClick={handleSetActiveIcon}
-                                >
-                                    {isActiveIcon ? (
-                                        <HeartActiveIcon
-                                            width="1.6rem"
-                                            height="1.6rem"
-                                            className={cx('icon-active')}
-                                        />
-                                    ) : (
-                                        <HeartIcon
-                                            width="1.6rem"
-                                            height="1.6rem"
-                                            className={cx('icon')}
-                                        />
-                                    )}
+                    {playlist?.map((item, i) => (
+                        <tr className={cx('table__row')} key={item.track.id}>
+                            <td className={cx('table__stt')}>
+                                <div className={cx('stt')}>
+                                    <span>{i + 1}</span>
+                                    <PlayIcon
+                                        width="1.6rem"
+                                        height="1.6rem"
+                                        className={cx('icon')}
+                                    />
+                                </div>
+                            </td>
+                            <td className={cx('table__title')}>
+                                <div className={cx('title__img')}>
+                                    <img
+                                        src={item.track.album.images
+                                            ?.map((img) => img.url)
+                                            .slice(1, 2)}
+                                        alt=""
+                                    />
                                 </div>
 
-                                <span className={cx('time__song')}>1:55</span>
-
-                                <div style={{ textAlign: 'left' }}>
-                                    <Popper
-                                        data={dataMenuPopper}
-                                        width={'210px'}
-                                        offset={[200, 0]}
-                                        placement={'left'}
+                                <div className={cx('title__info')}>
+                                    <span className={cx('title__name')}>
+                                        {item.track?.name}
+                                    </span>
+                                    <span className={cx('title__author')}>
+                                        {item.track.artists
+                                            ?.map((item) => item.name)
+                                            .slice(0, 1)}
+                                    </span>
+                                </div>
+                            </td>
+                            <td className={cx('table__album')}>
+                                {item.track.album?.name}
+                            </td>
+                            <td className={cx('table__date')}>
+                                {moment(item.added_at).fromNow()}
+                            </td>
+                            <td className={cx('table__time')}>
+                                <div className={cx('time')}>
+                                    <div
+                                        className={cx('time__icon')}
+                                        onClick={handleSetActiveIcon}
                                     >
-                                        <div>
-                                            <MoreMenuIcon
+                                        {isActiveIcon ? (
+                                            <HeartActiveIcon
+                                                width="1.6rem"
+                                                height="1.6rem"
+                                                className={cx('icon-active')}
+                                            />
+                                        ) : (
+                                            <HeartIcon
                                                 width="1.6rem"
                                                 height="1.6rem"
                                                 className={cx('icon')}
                                             />
-                                        </div>
-                                    </Popper>
+                                        )}
+                                    </div>
+
+                                    <span className={cx('time__song')}>
+                                        {moment(
+                                            item.track?.duration_ms
+                                        ).minute()}
+                                        :
+                                        {moment(
+                                            item.track?.duration_ms
+                                        ).second()}
+                                    </span>
+
+                                    <div style={{ textAlign: 'left' }}>
+                                        <Popper
+                                            data={dataMenuPopper}
+                                            width={'210px'}
+                                            offset={[200, 0]}
+                                            placement={'left'}
+                                        >
+                                            <div>
+                                                <MoreMenuIcon
+                                                    width="1.6rem"
+                                                    height="1.6rem"
+                                                    className={cx('icon')}
+                                                />
+                                            </div>
+                                        </Popper>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>

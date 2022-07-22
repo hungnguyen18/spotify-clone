@@ -5,7 +5,6 @@ import styles from './Playlist.module.scss';
 import { useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
 import {
-    ClockIcon,
     HeartActiveIcon,
     HeartIcon,
     MoreMenuIcon,
@@ -14,11 +13,13 @@ import {
 } from '../../components/Icon';
 import Popper from '../../components/Popper';
 import Table from './Table';
+import spotifyApi from '../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
 
 function Playlist() {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
+    const [playlist, setPlaylist] = useState([]);
     const location = useLocation();
 
     const dataMenuPopper = [
@@ -88,13 +89,29 @@ function Playlist() {
         setIsActiveIcon(isActive);
     };
 
-    useEffect(() => {}, []);
+    const id = location.state.id;
+
+    const likes = new Intl.NumberFormat().format(playlist.followers?.total);
+
+    useEffect(() => {
+        const getPlaylist = async () => {
+            try {
+                const res = await spotifyApi.getPlaylist(id);
+
+                setPlaylist(res);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        getPlaylist();
+    }, [id]);
 
     return (
         <div className={cx('playlist__container')}>
             <div className={cx('playlist__header')}>
                 <img
-                    src="https://i.scdn.co/image/ab67616d0000b273878ef5f909632a846601b51c"
+                    src={playlist.images?.map((img) => img.url).slice(0)}
                     alt="Img"
                     className={cx('playlist__img')}
                 />
@@ -102,16 +119,17 @@ function Playlist() {
                 <div className={cx('playlist__info')}>
                     <span className={cx('playlist__title')}>PLAYLIST</span>
 
-                    <h1 className={cx('playlist__name')}>Turn The Lights On</h1>
+                    <h1 className={cx('playlist__name')}>{playlist.name}</h1>
 
                     <span className={cx('playlist__description')}>
-                        beats + birds
+                        {playlist?.description}
                     </span>
 
                     <div className={cx('playlist__details')}>
                         <span className={cx('playlist__total')}>
-                            Spotify <span>123,905 likes</span>
-                            <span>166 songs</span>
+                            {playlist.owner?.display_name}
+                            <span>{likes} likes</span>
+                            <span>{playlist.tracks?.total} songs</span>
                         </span>
 
                         <span className={cx('playlist__time')}>
@@ -153,7 +171,7 @@ function Playlist() {
                             </Popper>
                         </div>
 
-                        <Table />
+                        <Table playlist={playlist.tracks?.items} />
                     </div>
                 </div>
             </div>

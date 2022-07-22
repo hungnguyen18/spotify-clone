@@ -47,6 +47,7 @@ function SidebarMenuItem({
     ) : (
         <NavLink
             to={`/playlist/${to}`}
+            state={{ id: to }}
             className={(nav) => cx('playlist__item', { active: nav.isActive })}
         >
             <div>{playlist.name}</div>

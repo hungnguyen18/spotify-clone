@@ -13,6 +13,10 @@ const spotifyApi = {
         const url = `me/tracks?limit=${limit}&offset=${offset}`;
         return axiosClient.get(url);
     },
+    getPlaylist: (id) => {
+        const url = `/playlists/${id}`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;
