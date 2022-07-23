@@ -15,10 +15,10 @@
 
 .table__row {
     border: 1px solid transparent;
-    transition: all linear 0.2s;
+    transition: all ease;
 
     &:hover {
-        background-color: hsla(0, 0%, 100%, 0.3);
+        background-color: hsla(0, 0%, 100%, 0.1);
         color: var(--white);
     }
 
@@ -79,6 +79,12 @@
         font-size: 1.5rem;
         font-weight: 600;
         color: var(--white);
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 
     .title__author {
@@ -89,6 +95,16 @@
 .table__album {
     text-align: left;
     width: 20%;
+
+    .album__name {
+        width: 90%;
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
 }
 
 .table__date {

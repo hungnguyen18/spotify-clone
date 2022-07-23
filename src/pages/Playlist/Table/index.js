@@ -147,7 +147,9 @@ function Table({ playlist }) {
                                 </div>
                             </td>
                             <td className={cx('table__album')}>
-                                {item.track.album?.name}
+                                <div className={cx('album__name')}>
+                                    {item.track.album?.name}
+                                </div>
                             </td>
                             <td className={cx('table__date')}>
                                 {moment(item.added_at).fromNow()}
@@ -174,13 +176,16 @@ function Table({ playlist }) {
                                     </div>
 
                                     <span className={cx('time__song')}>
-                                        {moment(
-                                            item.track?.duration_ms
-                                        ).minute()}
-                                        :
-                                        {moment(
-                                            item.track?.duration_ms
-                                        ).second()}
+                                        {moment
+                                            .utc(
+                                                moment
+                                                    .duration(
+                                                        item.track?.duration_ms,
+                                                        'millisecond'
+                                                    )
+                                                    .asMilliseconds()
+                                            )
+                                            .format('mm:ss')}
                                     </span>
 
                                     <div style={{ textAlign: 'left' }}>
