@@ -15,6 +15,7 @@ function Button({
     outline = false,
     disabled = false,
     small = false,
+    medium = false,
     large = false,
     onClick,
     to,
@@ -31,6 +32,7 @@ function Button({
         outline,
         disabled,
         small,
+        medium,
         large,
     });
 

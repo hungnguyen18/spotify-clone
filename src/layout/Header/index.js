@@ -7,7 +7,7 @@ import styles from './Header.module.scss';
 import SearchInput from '../../components/SearchInput';
 import User from './User';
 import Button from '../../components/Button';
-import { ArrowLeftIcon, ArrowRightIcon } from '../../components/Icon';
+import { ArrowLeftIcon, ArrowRightIcon, PlayIcon } from '../../components/Icon';
 import MenuLibrary from '../../components/MenuLibrary';
 
 const cx = classNames.bind(styles);
@@ -27,7 +27,7 @@ function Header({ shrink }) {
     };
 
     return (
-        <div className={cx('header__container', shrink)}>
+        <div className={cx('header__container', shrink.shrink)}>
             <div className={cx('header__act')}>
                 <Button icon>
                     <ArrowLeftIcon />
@@ -59,9 +59,25 @@ function Header({ shrink }) {
                 </div>
             )}
 
+            {location.pathname === `/playlist/${location.state?.id}` &&
+                shrink.shrinkPlay && (
+                    <div className={cx('header__wrapper')}>
+                        <div className={cx('header__playlist')}>
+                            <Button play small className={cx('header__play')}>
+                                <PlayIcon />
+                            </Button>
+
+                            <span className={cx('header__title')}>
+                                Attack on Titan -進撃の巨人-
+                            </span>
+                        </div>
+                    </div>
+                )}
+
             <div className={cx('header__user')}>
                 {(location.pathname === '/' ||
-                    location.pathname === '/playlist') && (
+                    location.pathname ===
+                        `/playlist/${location.state?.id}`) && (
                     <div className={cx('header__btn')}>
                         <Button outline>Upgrade</Button>
                     </div>

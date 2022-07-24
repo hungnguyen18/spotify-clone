@@ -29,3 +29,28 @@
 .header__btn {
     padding-right: 30px;
 }
+
+.header__playlist {
+    display: flex;
+    align-items: center;
+    animation: opacity ease 0.5s;
+}
+
+.header__play {
+    margin-right: 15px;
+}
+
+.header__title {
+    color: var(--white);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

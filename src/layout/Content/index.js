@@ -9,19 +9,18 @@ import styles from './Content.module.scss';
 const cx = classNames.bind(styles);
 
 function Content() {
-    const [shrink, setShrink] = useState('');
+    const [shrink, setShrink] = useState({ shrink: '', shrinkPlay: false });
 
     useEffect(() => {
         const body = document.getElementById('body');
 
         const shrinkHeader = () => {
-            if (
-                body.scrollTop > 30 ||
-                document.documentElement.scrollTop > 30
-            ) {
-                setShrink('shrink');
+            if (body.scrollTop > 30 && body.scrollTop < 400) {
+                setShrink({ ...shrink, shrink: 'shrink' });
+            } else if (body.scrollTop > 400) {
+                setShrink({ shrink: 'shrink', shrinkPlay: true });
             } else {
-                setShrink('');
+                setShrink({ shrink: '', shrinkPlay: false });
             }
         };
 
