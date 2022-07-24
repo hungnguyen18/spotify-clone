@@ -19,6 +19,7 @@ const cx = classNames.bind(styles);
 
 function Playlist() {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
+    const [backgroundColor, setBackgroundColor] = useState('');
     const [playlist, setPlaylist] = useState([]);
     const location = useLocation();
 
@@ -84,11 +85,6 @@ function Playlist() {
         },
     ];
 
-    const handleSetActiveIcon = () => {
-        const isActive = isActiveIcon === true ? false : true;
-        setIsActiveIcon(isActive);
-    };
-
     const id = location.state.id;
 
     const likes = new Intl.NumberFormat().format(playlist.followers?.total);
@@ -104,11 +100,40 @@ function Playlist() {
             }
         };
 
+        //Random color
+        const random_rgba = () => {
+            const o = Math.round,
+                r = Math.random,
+                s = 255;
+
+            return (
+                'rgba(' +
+                o(r() * s) +
+                ',' +
+                o(r() * s) +
+                ',' +
+                o(r() * s) +
+                ',' +
+                r().toFixed(1) +
+                ')'
+            );
+        };
+
+        setBackgroundColor(random_rgba());
+
         getPlaylist();
     }, [id]);
 
+    const handleSetActiveIcon = () => {
+        const isActive = isActiveIcon === true ? false : true;
+        setIsActiveIcon(isActive);
+    };
+
     return (
-        <div className={cx('playlist__container')}>
+        <div
+            className={cx('playlist__container')}
+            style={{ backgroundColor: backgroundColor }}
+        >
             <div className={cx('playlist__header')}>
                 <img
                     src={playlist.images?.map((img) => img.url).slice(0)}
