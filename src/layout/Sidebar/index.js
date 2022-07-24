@@ -14,7 +14,7 @@ import {
     LikeIcon,
     SearchIcon,
     SearchIconActive,
-} from '../Icon';
+} from '../../components/Icon';
 import spotifyApi from '../../api/spotifyApi';
 
 const cx = classNames.bind(styles);

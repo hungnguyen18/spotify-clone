@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
+import { Col, Row } from 'antd';
 
 import styles from './Header.module.scss';
-import SearchInput from '../SearchInput';
+import SearchInput from '../../components/SearchInput';
 import User from './User';
-import Button from '../Button';
-import { ArrowLeftIcon, ArrowRightIcon } from '../Icon';
-import { Col, Row } from 'antd';
-import MenuLibrary from '../MenuLibrary';
+import Button from '../../components/Button';
+import { ArrowLeftIcon, ArrowRightIcon } from '../../components/Icon';
+import MenuLibrary from '../../components/MenuLibrary';
 
 const cx = classNames.bind(styles);
 

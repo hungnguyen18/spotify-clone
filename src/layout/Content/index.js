@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
-import Header from '../../components/Header';
+import Header from '../Header';
 import pageRoutes from '../../routes';
 import styles from './Content.module.scss';
 

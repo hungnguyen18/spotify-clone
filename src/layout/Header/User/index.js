@@ -1,13 +1,16 @@
 import React, { memo, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Avatar, Col, Row } from 'antd';
-import Tippy from '@tippyjs/react/headless';
 import { UserOutlined } from '@ant-design/icons';
 
 import styles from './User.module.scss';
-import { ArrowDownIcon, ArrowUpIcon, ShortcutIcon } from '../../Icon';
+import {
+    ArrowDownIcon,
+    ArrowUpIcon,
+    ShortcutIcon,
+} from '../../../components/Icon';
 import spotifyApi from '../../../api/spotifyApi';
-import Popper from '../../Popper';
+import Popper from '../../../components/Popper';
 
 const cx = classNames.bind(styles);
 

@@ -1,11 +1,11 @@
-import { Col, Row } from 'antd';
 import { useEffect, useState } from 'react';
+import { Col, Row } from 'antd';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { setClientToken } from './api/axiosClient';
-import Content from './components/Content';
-import Player from './components/Player';
 
-import Sidebar from './components/Sidebar';
+import { setClientToken } from './api/axiosClient';
+import Content from './layout/Content';
+import Player from './layout/Player';
+import Sidebar from './layout/Sidebar';
 import Login from './pages/Auth/Login';
 
 function App() {
