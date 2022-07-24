@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import classNames from 'classnames/bind';
 import moment from 'moment';
 
@@ -12,11 +12,16 @@ import {
     SmallRightArrowIcon,
 } from '../../../components/Icon';
 import Popper from '../../../components/Popper';
+import { dataContext } from '../../../utils/DataProvider';
 
 const cx = classNames.bind(styles);
 
 function Table({ playlist }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
+
+    const idContext = useContext(dataContext);
+
+    // console.log(idContext);
 
     const handleSetActiveIcon = () => {
         const isActive = isActiveIcon === true ? false : true;
@@ -97,6 +102,10 @@ function Table({ playlist }) {
         },
     ];
 
+    const handleSetId = (id) => {
+        idContext.funcId(id);
+    };
+
     return (
         <div className={cx('table')}>
             <table>
@@ -114,7 +123,11 @@ function Table({ playlist }) {
 
                 <tbody>
                     {playlist?.map((item, i) => (
-                        <tr className={cx('table__row')} key={item.track.id}>
+                        <tr
+                            className={cx('table__row')}
+                            key={item.track.id}
+                            onClick={() => handleSetId(item.track.id)}
+                        >
                             <td className={cx('table__stt')}>
                                 <div className={cx('stt')}>
                                     <span>{i + 1}</span>
