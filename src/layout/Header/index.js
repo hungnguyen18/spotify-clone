@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 import { Col, Row } from 'antd';
@@ -9,6 +9,7 @@ import User from './User';
 import Button from '../../components/Button';
 import { ArrowLeftIcon, ArrowRightIcon, PlayIcon } from '../../components/Icon';
 import MenuLibrary from '../../components/MenuLibrary';
+import { dataContext } from '../../utils/DataProvider';
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +26,8 @@ function Header({ shrink }) {
     const handleSetLocationMenu = (nameLocation) => {
         setLocationMenu(nameLocation);
     };
+
+    const PlaylistContext = useContext(dataContext);
 
     return (
         <div className={cx('header__container', shrink.shrink)}>
@@ -68,7 +71,7 @@ function Header({ shrink }) {
                             </Button>
 
                             <span className={cx('header__title')}>
-                                Attack on Titan -進撃の巨人-
+                                {PlaylistContext?.dataPlaylist?.name}
                             </span>
                         </div>
                     </div>

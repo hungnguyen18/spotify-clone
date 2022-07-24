@@ -9,8 +9,6 @@ const cx = classNames.bind(styles);
 function Player() {
     const idContext = useContext(dataContext);
 
-    console.log(idContext.idTrack);
-
     return <div className={cx('player__container')}></div>;
 }
 

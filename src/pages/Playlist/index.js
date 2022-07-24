@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import classNames from 'classnames/bind';
-
 import styles from './Playlist.module.scss';
 import { useLocation } from 'react-router-dom';
+
 import Button from '../../components/Button';
 import {
     HeartActiveIcon,
@@ -14,6 +14,7 @@ import {
 import Popper from '../../components/Popper';
 import Table from './Table';
 import spotifyApi from '../../api/spotifyApi';
+import { dataContext } from '../../utils/DataProvider';
 
 const cx = classNames.bind(styles);
 
@@ -86,8 +87,8 @@ function Playlist() {
     ];
 
     const id = location.state.id;
-
     const likes = new Intl.NumberFormat().format(playlist.followers?.total);
+    const playlistContext = useContext(dataContext);
 
     useEffect(() => {
         const getPlaylist = async () => {
@@ -95,6 +96,7 @@ function Playlist() {
                 const res = await spotifyApi.getPlaylist(id);
 
                 setPlaylist(res);
+                playlistContext.dataPlaylist.funcPlaylist(res);
             } catch (err) {
                 console.log(err);
             }

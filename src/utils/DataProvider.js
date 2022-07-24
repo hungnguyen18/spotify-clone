@@ -4,14 +4,27 @@ const dataContext = createContext();
 
 function DataProvider({ children }) {
     const [idTrack, setIdTrack] = useState();
+    const [playlist, setplaylist] = useState({});
 
     const funcCallbackIdTrack = useCallback((id) => {
         setIdTrack(id);
     });
 
+    const funcCallbackPlaylist = useCallback((item) => {
+        setplaylist(item);
+    });
+
     const data = {
-        idTrack: idTrack,
-        funcId: funcCallbackIdTrack,
+        dataTrack: {
+            idTrack: idTrack,
+            funcId: funcCallbackIdTrack,
+        },
+        dataPlaylist: {
+            id: playlist.id,
+            name: playlist.name,
+            data: playlist,
+            funcPlaylist: funcCallbackPlaylist,
+        },
     };
 
     return <dataContext.Provider value={data}>{children}</dataContext.Provider>;
