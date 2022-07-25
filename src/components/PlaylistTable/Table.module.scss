@@ -31,6 +31,21 @@
             display: none;
         }
     }
+
+    &.active {
+        background-color: hsla(0, 0%, 100%, 0.1);
+        color: var(--white);
+
+        .icon {
+            display: block;
+        }
+
+        .stt {
+            span {
+                display: none;
+            }
+        }
+    }
 }
 
 .table__stt {

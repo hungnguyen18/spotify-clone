@@ -18,6 +18,7 @@ const cx = classNames.bind(styles);
 
 function PlaylistTable({ playlist }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
+    const [isActiveRow, setIsActiveRow] = useState();
 
     const idContext = useContext(dataContext);
 
@@ -25,6 +26,7 @@ function PlaylistTable({ playlist }) {
 
     const handleSetActiveIcon = () => {
         const isActive = isActiveIcon === true ? false : true;
+
         setIsActiveIcon(isActive);
     };
 
@@ -103,7 +105,7 @@ function PlaylistTable({ playlist }) {
     ];
 
     const handleSetId = (id) => {
-        idContext.funcId(id);
+        setIsActiveRow(id);
     };
 
     return (
@@ -124,7 +126,14 @@ function PlaylistTable({ playlist }) {
                 <tbody>
                     {playlist?.map((item, i) => (
                         <tr
-                            className={cx('table__row')}
+                            className={cx(
+                                'table__row',
+                                `${
+                                    item.track.id === isActiveRow
+                                        ? 'active'
+                                        : ''
+                                }`
+                            )}
                             key={item.track.id}
                             onClick={() => handleSetId(item.track.id)}
                         >
@@ -171,7 +180,12 @@ function PlaylistTable({ playlist }) {
                                 <div className={cx('time')}>
                                     <div
                                         className={cx('time__icon')}
-                                        onClick={handleSetActiveIcon}
+                                        onClick={(e) =>
+                                            handleSetActiveIcon(
+                                                e,
+                                                item.track.id
+                                            )
+                                        }
                                     >
                                         {isActiveIcon ? (
                                             <HeartActiveIcon
