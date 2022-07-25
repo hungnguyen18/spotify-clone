@@ -12,9 +12,10 @@ import {
     SmallRightArrowIcon,
 } from '../../components/Icon';
 import Popper from '../../components/Popper';
-import Table from './Table';
+import Table from '../../components/PlaylistTable';
 import spotifyApi from '../../api/spotifyApi';
 import { dataContext } from '../../utils/DataProvider';
+import PlaylistHeader from '../../components/PlaylistHeader';
 
 const cx = classNames.bind(styles);
 
@@ -136,35 +137,7 @@ function Playlist() {
             className={cx('playlist__container')}
             style={{ backgroundColor: backgroundColor }}
         >
-            <div className={cx('playlist__header')}>
-                <img
-                    src={playlist.images?.map((img) => img.url).slice(0)}
-                    alt="Img"
-                    className={cx('playlist__img')}
-                />
-
-                <div className={cx('playlist__info')}>
-                    <span className={cx('playlist__title')}>PLAYLIST</span>
-
-                    <h1 className={cx('playlist__name')}>{playlist.name}</h1>
-
-                    <span className={cx('playlist__description')}>
-                        {playlist?.description}
-                    </span>
-
-                    <div className={cx('playlist__details')}>
-                        <span className={cx('playlist__total')}>
-                            {playlist.owner?.display_name}
-                            <span>{likes} likes</span>
-                            <span>{playlist.tracks?.total} songs</span>
-                        </span>
-
-                        <span className={cx('playlist__time')}>
-                            , about 6 hr
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <PlaylistHeader data={playlist} />
 
             <div className={cx('playlist__body')}>
                 <div className="container--not-padding-top">

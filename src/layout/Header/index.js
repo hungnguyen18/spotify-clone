@@ -4,11 +4,11 @@ import { useLocation } from 'react-router-dom';
 import { Col, Row } from 'antd';
 
 import styles from './Header.module.scss';
-import SearchInput from '../../components/SearchInput';
+import SearchInput from './SearchInput';
 import User from './User';
 import Button from '../../components/Button';
 import { ArrowLeftIcon, ArrowRightIcon, PlayIcon } from '../../components/Icon';
-import MenuLibrary from '../../components/MenuLibrary';
+import MenuLibrary from './MenuLibrary';
 import { dataContext } from '../../utils/DataProvider';
 
 const cx = classNames.bind(styles);

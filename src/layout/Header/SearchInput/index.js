@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Search.module.scss';
 
-import { BigSearchIcon, ClearSearchIcon } from '../Icon';
+import { BigSearchIcon, ClearSearchIcon } from '../../../components/Icon';
 import { useRef } from 'react';
 
 const cx = classNames.bind(styles);

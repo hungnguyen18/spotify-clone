@@ -10,13 +10,13 @@ import {
     MoreMenuIcon,
     PlayIcon,
     SmallRightArrowIcon,
-} from '../../../components/Icon';
-import Popper from '../../../components/Popper';
-import { dataContext } from '../../../utils/DataProvider';
+} from '../Icon';
+import Popper from '../Popper';
+import { dataContext } from '../../utils/DataProvider';
 
 const cx = classNames.bind(styles);
 
-function Table({ playlist }) {
+function PlaylistTable({ playlist }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
 
     const idContext = useContext(dataContext);
@@ -227,4 +227,4 @@ function Table({ playlist }) {
     );
 }
 
-export default Table;
+export default PlaylistTable;
