@@ -88,7 +88,6 @@ function Playlist() {
     ];
 
     const id = location.state.id;
-    const likes = new Intl.NumberFormat().format(playlist.followers?.total);
     const playlistContext = useContext(dataContext);
 
     useEffect(() => {

@@ -106,6 +106,7 @@ function PlaylistTable({ playlist }) {
 
     const handleSetId = (id) => {
         setIsActiveRow(id);
+        idContext.dataTrack.funcTrack(id);
     };
 
     return (

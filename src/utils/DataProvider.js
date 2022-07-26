@@ -6,7 +6,7 @@ function DataProvider({ children }) {
     const [idTrack, setIdTrack] = useState();
     const [playlist, setplaylist] = useState({});
 
-    const funcCallbackIdTrack = useCallback((id) => {
+    const funcCallbackTrack = useCallback((id) => {
         setIdTrack(id);
     });
 
@@ -16,11 +16,13 @@ function DataProvider({ children }) {
 
     const data = {
         dataTrack: {
-            idTrack: idTrack,
-            funcId: funcCallbackIdTrack,
+            id: idTrack,
+            type: 'track',
+            funcTrack: funcCallbackTrack,
         },
         dataPlaylist: {
             id: playlist.id,
+            type: 'playlist',
             name: playlist.name,
             data: playlist,
             funcPlaylist: funcCallbackPlaylist,
