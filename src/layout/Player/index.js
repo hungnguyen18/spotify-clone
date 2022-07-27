@@ -29,6 +29,7 @@ function Player() {
     const [like, setLike] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [audioVolume, setAudioVolume] = useState(0);
 
     const audioRef = useRef();
 
@@ -41,7 +42,7 @@ function Player() {
 
     // console.log(idContext);
 
-    //Control player audio
+    //Control slider audio
     const handlePlaying = () => {
         const isPlaying = Playing === false ? true : false;
 
@@ -56,6 +57,9 @@ function Player() {
 
     const handleLoadedData = () => {
         setDuration(audioRef.current.duration);
+
+        setAudioVolume(audioRef.current.volume * 100);
+
         if (Playing) audioRef.current.play();
     };
 
@@ -68,6 +72,13 @@ function Player() {
             setPlaying(true);
             audioRef.current.play();
         }
+    };
+
+    //Control volume
+    const handleChangeVolume = (value) => {
+        audioRef.current.volume = value / 1000;
+
+        setAudioVolume(value);
     };
 
     return (
@@ -181,9 +192,9 @@ function Player() {
                 <audio
                     ref={audioRef}
                     src="https://p.scdn.co/mp3-preview/24d3cd9175b4f220339cb4e39be127de7e43ac4f?cid=eda06710579b49d0a0d768764ec37158"
-                    onTimeUpdate={() =>
-                        setCurrentTime(audioRef.current.currentTime)
-                    }
+                    onTimeUpdate={() => {
+                        setCurrentTime(audioRef.current.currentTime);
+                    }}
                     onLoadedData={handleLoadedData}
                 />
             </div>
@@ -208,10 +219,12 @@ function Player() {
                 <div className={cx('volume__slider')}>
                     <Slider
                         defaultValue={0}
+                        value={audioVolume}
                         trackStyle={{
                             backgroundColor: 'var(--primary-color)',
                         }}
                         tipFormatter={null}
+                        onChange={handleChangeVolume}
                     />
                 </div>
             </div>
