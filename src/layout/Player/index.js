@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { Slider } from 'antd';
@@ -20,25 +20,54 @@ import {
     ShuffleIcon,
     VolumeIcon,
 } from '../../components/Icon';
+import moment from 'moment';
 
 const cx = classNames.bind(styles);
 
 function Player() {
     const [Playing, setPlaying] = useState(false);
     const [like, setLike] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+
+    const audioRef = useRef();
 
     const idContext = useContext(dataContext);
-
-    console.log(idContext);
-
-    const handlePlaying = () => {
-        const isPlaying = Playing === false ? true : false;
-        setPlaying(isPlaying);
-    };
 
     const handleLike = () => {
         const isLike = like === false ? true : false;
         setLike(isLike);
+    };
+
+    // console.log(idContext);
+
+    //Control player audio
+    const handlePlaying = () => {
+        const isPlaying = Playing === false ? true : false;
+
+        if (isPlaying) {
+            audioRef.current.play();
+        } else {
+            audioRef.current.pause();
+        }
+
+        setPlaying(isPlaying);
+    };
+
+    const handleLoadedData = () => {
+        setDuration(audioRef.current.duration);
+        if (Playing) audioRef.current.play();
+    };
+
+    const handleTimeSliderChange = (value) => {
+        audioRef.current.currentTime = value;
+
+        setCurrentTime(value);
+
+        if (!Playing) {
+            setPlaying(true);
+            audioRef.current.play();
+        }
     };
 
     return (
@@ -96,14 +125,14 @@ function Player() {
                             className={cx('play__icon')}
                             onClick={handlePlaying}
                         >
-                            <PlayIcon width="1.6rem" height="1.6rem" />
+                            <PauseIcon />
                         </div>
                     ) : (
                         <div
                             className={cx('play__icon')}
                             onClick={handlePlaying}
                         >
-                            <PauseIcon />
+                            <PlayIcon width="1.6rem" height="1.6rem" />
                         </div>
                     )}
 
@@ -117,21 +146,46 @@ function Player() {
                 </div>
 
                 <div className={cx('player__slider')}>
-                    <span className={cx('slider__current')}>00:00</span>
+                    <span className={cx('slider__current')}>
+                        {moment
+                            .utc(
+                                moment
+                                    .duration(currentTime, 'second')
+                                    .asMilliseconds()
+                            )
+                            .format('mm:ss')}
+                    </span>
 
                     <div className={cx('slider__timeline')}>
                         <Slider
-                            defaultValue={0}
+                            value={currentTime}
                             trackStyle={{
                                 backgroundColor: 'var(--primary-color)',
                             }}
                             tipFormatter={null}
+                            max={duration || 0}
+                            onChange={handleTimeSliderChange}
                         />
                     </div>
 
-                    <span className={cx('slider__duration')}>00:00</span>
+                    <span className={cx('slider__duration')}>
+                        {moment
+                            .utc(
+                                moment
+                                    .duration(duration, 'second')
+                                    .asMilliseconds()
+                            )
+                            .format('mm:ss')}
+                    </span>
                 </div>
-                <audio src="https://p.scdn.co/mp3-preview/24d3cd9175b4f220339cb4e39be127de7e43ac4f?cid=eda06710579b49d0a0d768764ec37158" />
+                <audio
+                    ref={audioRef}
+                    src="https://p.scdn.co/mp3-preview/24d3cd9175b4f220339cb4e39be127de7e43ac4f?cid=eda06710579b49d0a0d768764ec37158"
+                    onTimeUpdate={() =>
+                        setCurrentTime(audioRef.current.currentTime)
+                    }
+                    onLoadedData={handleLoadedData}
+                />
             </div>
 
             <div className={cx('player__action')}>
