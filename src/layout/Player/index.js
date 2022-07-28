@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { Slider } from 'antd';
@@ -21,6 +21,7 @@ import {
     VolumeIcon,
 } from '../../components/Icon';
 import moment from 'moment';
+import spotifyApi from '../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
 
@@ -30,17 +31,57 @@ function Player() {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [audioVolume, setAudioVolume] = useState(0);
+    const [trackPlayer, setTrackPlayer] = useState({});
 
     const audioRef = useRef();
 
-    const idContext = useContext(dataContext);
+    //DataPlaylists
+    const playlistContext = useContext(dataContext);
+    const trackType = playlistContext.dataTrack?.type;
+    // const trackId = playlistContext.dataTrack?.id;
+    let trackIndex = playlistContext.dataTrack?.index;
+    const playlist = playlistContext.dataPlaylist?.playlist;
+
+    useEffect(() => {
+        const getTrack = async () => {
+            try {
+                switch (trackType) {
+                    case 'track':
+                    case 'episode':
+                        setTrackPlayer({
+                            img: playlist[trackIndex].track.album.images[1]
+                                ?.url,
+                            name: playlist[trackIndex].track.name,
+                            artist: playlist[trackIndex].track.artists[0].name,
+                            url: playlist[trackIndex].track.preview_url,
+                            data: playlist[trackIndex].track,
+                        });
+                        setPlaying(true);
+                        break;
+                    default:
+                        const resCurrentTrack =
+                            await spotifyApi.getCurrentPlaying();
+
+                        setTrackPlayer({
+                            img: resCurrentTrack.item.album.images[1]?.url,
+                            name: resCurrentTrack.item.name,
+                            artist: resCurrentTrack.item.artists[0].name,
+                            url: resCurrentTrack.item.preview_url,
+                        });
+                }
+            } catch (err) {
+                console.log(err);
+                setTrackPlayer({});
+            }
+        };
+
+        getTrack();
+    }, [playlistContext.dataTrack.id]);
 
     const handleLike = () => {
         const isLike = like === false ? true : false;
         setLike(isLike);
     };
-
-    // console.log(idContext);
 
     //Control slider audio
     const handlePlaying = () => {
@@ -85,18 +126,15 @@ function Player() {
         <div className={cx('player__container')}>
             <div className={cx('player__details')}>
                 <div className={cx('player__img')}>
-                    <img
-                        src="https://i.scdn.co/image/ab67616d00001e0223ec0bc09b61d08fcb64acea"
-                        alt="img"
-                    />
+                    <img src={trackPlayer.img} alt="img" />
                 </div>
 
                 <div className={cx('player__info')}>
                     <span className={cx('player__track')}>
-                        <Link to="/">Bên trên tầng lầu</Link>
+                        <Link to="/">{trackPlayer.name}</Link>
                     </span>
                     <span className={cx('player__author')}>
-                        <Link to="/">Tăng Duy Tân</Link>
+                        <Link to="/">{trackPlayer.artist}</Link>
                     </span>
                 </div>
 
@@ -191,7 +229,7 @@ function Player() {
                 </div>
                 <audio
                     ref={audioRef}
-                    src="https://p.scdn.co/mp3-preview/24d3cd9175b4f220339cb4e39be127de7e43ac4f?cid=eda06710579b49d0a0d768764ec37158"
+                    src={trackPlayer.url}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime);
                     }}

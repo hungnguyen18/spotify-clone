@@ -22,8 +22,6 @@ function PlaylistTable({ playlist }) {
 
     const idContext = useContext(dataContext);
 
-    // console.log(idContext);
-
     const handleSetActiveIcon = () => {
         const isActive = isActiveIcon === true ? false : true;
 
@@ -104,9 +102,9 @@ function PlaylistTable({ playlist }) {
         },
     ];
 
-    const handleSetId = (id) => {
+    const handleSetId = (i, id, type) => {
         setIsActiveRow(id);
-        idContext.dataTrack.funcTrack(id);
+        idContext.dataTrack.funcTrack(i, id, type);
     };
 
     return (
@@ -136,7 +134,9 @@ function PlaylistTable({ playlist }) {
                                 }`
                             )}
                             key={item.track.id}
-                            onClick={() => handleSetId(item.track.id)}
+                            onClick={() =>
+                                handleSetId(i, item.track.id, item.track.type)
+                            }
                         >
                             <td className={cx('table__stt')}>
                                 <div className={cx('stt')}>

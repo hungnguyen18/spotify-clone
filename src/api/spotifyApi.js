@@ -17,6 +17,10 @@ const spotifyApi = {
         const url = `/playlists/${id}`;
         return axiosClient.get(url);
     },
+    getCurrentPlaying: () => {
+        const url = `me/player/currently-playing`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;

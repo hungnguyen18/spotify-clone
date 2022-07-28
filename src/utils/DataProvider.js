@@ -3,11 +3,11 @@ import React, { createContext, useCallback, useState } from 'react';
 const dataContext = createContext();
 
 function DataProvider({ children }) {
-    const [idTrack, setIdTrack] = useState();
+    const [track, setTrack] = useState({ index: null, id: '', type: '' });
     const [playlist, setplaylist] = useState({});
 
-    const funcCallbackTrack = useCallback((id) => {
-        setIdTrack(id);
+    const funcCallbackTrack = useCallback((i, id, type) => {
+        setTrack({ index: i, id: id, type: type });
     });
 
     const funcCallbackPlaylist = useCallback((item) => {
@@ -16,15 +16,16 @@ function DataProvider({ children }) {
 
     const data = {
         dataTrack: {
-            id: idTrack,
-            type: 'track',
+            index: track.index,
+            id: track.id,
+            type: track.type,
             funcTrack: funcCallbackTrack,
         },
         dataPlaylist: {
             id: playlist.id,
             type: 'playlist',
             name: playlist.name,
-            data: playlist,
+            playlist: playlist.tracks?.items,
             funcPlaylist: funcCallbackPlaylist,
         },
     };
