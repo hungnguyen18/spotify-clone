@@ -43,6 +43,9 @@ function Player() {
     const playlist = playlistContext.dataPlaylist?.playlist;
 
     useEffect(() => {
+        const idPlaylist = window.localStorage.getItem('idPlaylist');
+        const indexTrack = window.localStorage.getItem('indexTrack');
+
         const getTrack = async () => {
             try {
                 switch (trackType) {
@@ -56,17 +59,42 @@ function Player() {
                             url: playlist[trackIndex].track.preview_url,
                             data: playlist[trackIndex].track,
                         });
+
+                        window.localStorage.setItem(
+                            'idPlaylist',
+                            playlistContext.dataPlaylist?.id
+                        );
+                        window.localStorage.setItem('indexTrack', trackIndex);
+
                         setPlaying(true);
+
                         break;
                     default:
-                        const resCurrentTrack =
-                            await spotifyApi.getCurrentPlaying();
+                        // console.log(idPlaylist);
+                        let idPlaylistDefault;
+                        let indexTrackDefault;
+
+                        if (idPlaylist === null) {
+                            idPlaylistDefault = '37i9dQZF1DWVOaOWiVD1Lf';
+                            indexTrackDefault = 0;
+                        } else {
+                            idPlaylistDefault = idPlaylist;
+                            indexTrackDefault = indexTrack;
+                        }
+
+                        const resCurrentTrack = await spotifyApi.getPlaylist(
+                            idPlaylistDefault
+                        );
+
+                        const currentTrack =
+                            resCurrentTrack.tracks.items[indexTrackDefault]
+                                ?.track;
 
                         setTrackPlayer({
-                            img: resCurrentTrack.item.album.images[1]?.url,
-                            name: resCurrentTrack.item.name,
-                            artist: resCurrentTrack.item.artists[0].name,
-                            url: resCurrentTrack.item.preview_url,
+                            img: currentTrack.album.images[1].url,
+                            name: currentTrack.name,
+                            artist: currentTrack.artists[0].name,
+                            url: currentTrack.preview_url,
                         });
                 }
             } catch (err) {
