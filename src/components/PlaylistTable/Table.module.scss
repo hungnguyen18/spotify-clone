@@ -33,7 +33,7 @@
     }
 
     &.active {
-        background-color: hsla(0, 0%, 100%, 0.1);
+        background-color: hsla(0, 0%, 100%, 0.3);
         color: var(--white);
 
         .icon {
@@ -100,6 +100,10 @@
         -webkit-line-clamp: 1;
         line-clamp: 1;
         -webkit-box-orient: vertical;
+
+        &.active {
+            color: var(--primary-color);
+        }
     }
 
     .title__author {

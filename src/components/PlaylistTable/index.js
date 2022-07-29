@@ -8,6 +8,7 @@ import {
     HeartActiveIcon,
     HeartIcon,
     MoreMenuIcon,
+    PauseIcon,
     PlayIcon,
     SmallRightArrowIcon,
 } from '../Icon';
@@ -19,8 +20,16 @@ const cx = classNames.bind(styles);
 function PlaylistTable({ playlist }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
     const [isActiveRow, setIsActiveRow] = useState();
+    const [isActivePlay, setIsActivePlay] = useState({
+        id: '',
+        isActive: false,
+    });
 
     const idContext = useContext(dataContext);
+
+    const isPlaying = idContext.dataTrack.isPlaying;
+
+    const idTrack = idContext.dataTrack.id;
 
     const handleSetActiveIcon = () => {
         const isActive = isActiveIcon === true ? false : true;
@@ -102,9 +111,8 @@ function PlaylistTable({ playlist }) {
         },
     ];
 
-    const handleSetId = (i, id, type) => {
+    const handleSetId = (id) => {
         setIsActiveRow(id);
-        idContext.dataTrack.funcTrack(i, id, type);
     };
 
     return (
@@ -134,18 +142,62 @@ function PlaylistTable({ playlist }) {
                                 }`
                             )}
                             key={item.track.id}
-                            onClick={() =>
-                                handleSetId(i, item.track.id, item.track.type)
-                            }
+                            onClick={() => handleSetId(item.track.id)}
                         >
                             <td className={cx('table__stt')}>
                                 <div className={cx('stt')}>
                                     <span>{i + 1}</span>
-                                    <PlayIcon
-                                        width="1.6rem"
-                                        height="1.6rem"
-                                        className={cx('icon')}
-                                    />
+
+                                    {isActivePlay.isActive === true &&
+                                    isActivePlay.id === item.track.id ? (
+                                        <div
+                                            style={{ display: 'flex' }}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setIsActivePlay({
+                                                    id: item.track.id,
+                                                    isActive: false,
+                                                });
+
+                                                idContext.dataTrack.funcTrack(
+                                                    i,
+                                                    item.track.id,
+                                                    item.track.type,
+                                                    false
+                                                );
+                                            }}
+                                        >
+                                            <PauseIcon
+                                                width="1.6rem"
+                                                height="1.6rem"
+                                                className={cx('icon')}
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div
+                                            style={{ display: 'flex' }}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setIsActivePlay({
+                                                    id: item.track.id,
+                                                    isActive: true,
+                                                });
+
+                                                idContext.dataTrack.funcTrack(
+                                                    i,
+                                                    item.track.id,
+                                                    item.track.type,
+                                                    true
+                                                );
+                                            }}
+                                        >
+                                            <PlayIcon
+                                                width="1.6rem"
+                                                height="1.6rem"
+                                                className={cx('icon')}
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                             </td>
                             <td className={cx('table__title')}>
@@ -159,7 +211,17 @@ function PlaylistTable({ playlist }) {
                                 </div>
 
                                 <div className={cx('title__info')}>
-                                    <span className={cx('title__name')}>
+                                    <span
+                                        className={cx(
+                                            'title__name',
+                                            `${
+                                                isPlaying === true &&
+                                                idTrack === item.track.id
+                                                    ? 'active'
+                                                    : ''
+                                            }`
+                                        )}
+                                    >
                                         {item.track?.name}
                                     </span>
                                     <span className={cx('title__author')}>

@@ -41,6 +41,7 @@ function Player() {
 
     const trackId = playlistContext.dataTrack?.id;
     const trackType = playlistContext.dataTrack?.type;
+    const trackIsPlaying = playlistContext.dataTrack.isPlaying;
     const playlist = playlistContext.dataPlaylist?.playlist;
 
     useEffect(() => {
@@ -67,7 +68,13 @@ function Player() {
                         );
                         window.localStorage.setItem('indexTrack', trackIndex);
 
-                        setPlaying(true);
+                        if (trackIsPlaying) {
+                            setPlaying(true);
+                            audioRef.current.play();
+                        } else {
+                            setPlaying(false);
+                            audioRef.current.pause();
+                        }
 
                         break;
                     default:
@@ -103,7 +110,7 @@ function Player() {
         };
 
         getTrack();
-    }, [trackId]);
+    }, [trackId, trackIsPlaying]);
 
     const handleLike = () => {
         const isLike = like === false ? true : false;
