@@ -89,12 +89,15 @@ function Playlist() {
 
     const id = location.state.id;
 
+    const playlistContext = useContext(dataContext);
+
     useEffect(() => {
         const getPlaylist = async () => {
             try {
                 const res = await spotifyApi.getPlaylist(id);
 
                 setPlaylist(res);
+                playlistContext.dataHeader.funcHeader(res);
             } catch (err) {
                 console.log(err);
             }

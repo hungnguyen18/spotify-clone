@@ -29,6 +29,8 @@ function Header({ shrink }) {
 
     const PlaylistContext = useContext(dataContext);
 
+    // console.log(PlaylistContext);
+
     return (
         <div className={cx('header__container', shrink.shrink)}>
             <div className={cx('header__act')}>
@@ -71,7 +73,7 @@ function Header({ shrink }) {
                             </Button>
 
                             <span className={cx('header__title')}>
-                                {PlaylistContext?.dataPlaylist?.name}
+                                {PlaylistContext?.dataHeader?.name}
                             </span>
                         </div>
                     </div>

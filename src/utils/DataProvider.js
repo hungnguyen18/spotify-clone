@@ -5,14 +5,19 @@ const dataContext = createContext();
 function DataProvider({ children }) {
     const [track, setTrack] = useState({ index: null, id: '', type: '' });
     const [playlist, setPlaylist] = useState({});
+    const [header, setHeader] = useState({});
 
     const funcCallbackTrack = useCallback((i, id, type, playing) => {
         setTrack({ index: i, id: id, type: type, isPlaying: playing });
-    },[]);
+    }, []);
 
     const funcCallbackPlaylist = useCallback((item) => {
         setPlaylist(item);
-    },[]);
+    }, []);
+
+    const funcCallbackHeader = useCallback((item) => {
+        setHeader(item);
+    }, []);
 
     const data = {
         dataTrack: {
@@ -28,6 +33,10 @@ function DataProvider({ children }) {
             name: playlist.name,
             playlist: playlist.tracks?.items,
             funcPlaylist: funcCallbackPlaylist,
+        },
+        dataHeader: {
+            name: header.name,
+            funcHeader: funcCallbackHeader,
         },
     };
 
