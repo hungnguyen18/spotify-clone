@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import { Slider } from 'antd';
 
 import styles from './Player.module.scss';
@@ -20,7 +21,6 @@ import {
     ShuffleIcon,
     VolumeIcon,
 } from '../../components/Icon';
-import moment from 'moment';
 import spotifyApi from '../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
@@ -30,16 +30,17 @@ function Player() {
     const [like, setLike] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [audioVolume, setAudioVolume] = useState(0);
     const [trackPlayer, setTrackPlayer] = useState({});
 
     const audioRef = useRef();
 
     //DataPlaylists
     const playlistContext = useContext(dataContext);
-    const trackType = playlistContext.dataTrack?.type;
-    // const trackId = playlistContext.dataTrack?.id;
+
     let trackIndex = playlistContext.dataTrack?.index;
+
+    const trackId = playlistContext.dataTrack?.id;
+    const trackType = playlistContext.dataTrack?.type;
     const playlist = playlistContext.dataPlaylist?.playlist;
 
     useEffect(() => {
@@ -70,24 +71,22 @@ function Player() {
 
                         break;
                     default:
-                        // console.log(idPlaylist);
-                        let idPlaylistDefault;
-                        let indexTrackDefault;
+                        let PlaylistDefault = { id: null, index: null };
 
                         if (idPlaylist === null) {
-                            idPlaylistDefault = '37i9dQZF1DWVOaOWiVD1Lf';
-                            indexTrackDefault = 0;
+                            PlaylistDefault.id = '37i9dQZF1DWVOaOWiVD1Lf';
+                            PlaylistDefault.index = 0;
                         } else {
-                            idPlaylistDefault = idPlaylist;
-                            indexTrackDefault = indexTrack;
+                            PlaylistDefault.id = idPlaylist;
+                            PlaylistDefault.index = indexTrack;
                         }
 
                         const resCurrentTrack = await spotifyApi.getPlaylist(
-                            idPlaylistDefault
+                            PlaylistDefault.id
                         );
 
                         const currentTrack =
-                            resCurrentTrack.tracks.items[indexTrackDefault]
+                            resCurrentTrack.tracks.items[PlaylistDefault.index]
                                 ?.track;
 
                         setTrackPlayer({
@@ -104,7 +103,7 @@ function Player() {
         };
 
         getTrack();
-    }, [playlistContext.dataTrack.id]);
+    }, [trackId]);
 
     const handleLike = () => {
         const isLike = like === false ? true : false;
@@ -127,8 +126,6 @@ function Player() {
     const handleLoadedData = () => {
         setDuration(audioRef.current.duration);
 
-        setAudioVolume(audioRef.current.volume * 100);
-
         if (Playing) audioRef.current.play();
     };
 
@@ -141,13 +138,6 @@ function Player() {
             setPlaying(true);
             audioRef.current.play();
         }
-    };
-
-    //Control volume
-    const handleChangeVolume = (value) => {
-        audioRef.current.volume = value / 1000;
-
-        setAudioVolume(value);
     };
 
     return (
@@ -284,13 +274,15 @@ function Player() {
 
                 <div className={cx('volume__slider')}>
                     <Slider
-                        defaultValue={0}
-                        value={audioVolume}
+                        defaultValue={1}
+                        min={0}
+                        max={1}
+                        step={0.01}
                         trackStyle={{
                             backgroundColor: 'var(--primary-color)',
                         }}
                         tipFormatter={null}
-                        onChange={handleChangeVolume}
+                        onChange={(value) => (audioRef.current.volume = value)}
                     />
                 </div>
             </div>
