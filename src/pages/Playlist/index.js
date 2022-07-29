@@ -88,7 +88,6 @@ function Playlist() {
     ];
 
     const id = location.state.id;
-    const playlistContext = useContext(dataContext);
 
     useEffect(() => {
         const getPlaylist = async () => {
@@ -96,7 +95,6 @@ function Playlist() {
                 const res = await spotifyApi.getPlaylist(id);
 
                 setPlaylist(res);
-                playlistContext.dataPlaylist.funcPlaylist(res);
             } catch (err) {
                 console.log(err);
             }
@@ -170,7 +168,10 @@ function Playlist() {
                             </Popper>
                         </div>
 
-                        <Table playlist={playlist.tracks?.items} />
+                        <Table
+                            playlist={playlist.tracks?.items}
+                            res={playlist}
+                        />
                     </div>
                 </div>
             </div>

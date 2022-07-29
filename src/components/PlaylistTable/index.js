@@ -17,7 +17,7 @@ import { dataContext } from '../../utils/DataProvider';
 
 const cx = classNames.bind(styles);
 
-function PlaylistTable({ playlist }) {
+function PlaylistTable({ playlist, res }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
     const [isActiveRow, setIsActiveRow] = useState();
     const [isActivePlay, setIsActivePlay] = useState({
@@ -159,6 +159,10 @@ function PlaylistTable({ playlist }) {
                                                     isActive: false,
                                                 });
 
+                                                idContext.dataPlaylist.funcPlaylist(
+                                                    res
+                                                );
+
                                                 idContext.dataTrack.funcTrack(
                                                     i,
                                                     item.track.id,
@@ -182,6 +186,10 @@ function PlaylistTable({ playlist }) {
                                                     id: item.track.id,
                                                     isActive: true,
                                                 });
+
+                                                idContext.dataPlaylist.funcPlaylist(
+                                                    res
+                                                );
 
                                                 idContext.dataTrack.funcTrack(
                                                     i,

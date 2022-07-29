@@ -8,11 +8,11 @@ function DataProvider({ children }) {
 
     const funcCallbackTrack = useCallback((i, id, type, playing) => {
         setTrack({ index: i, id: id, type: type, isPlaying: playing });
-    });
+    },[]);
 
     const funcCallbackPlaylist = useCallback((item) => {
         setPlaylist(item);
-    });
+    },[]);
 
     const data = {
         dataTrack: {

@@ -147,6 +147,39 @@ function Player() {
         }
     };
 
+    const handleNextTrack = () => {
+        const nextIndex = trackIndex < playlist.length - 1 ? trackIndex + 1 : 0;
+
+        playlistContext.dataTrack.funcTrack(
+            nextIndex,
+            playlist[nextIndex].track?.id,
+            playlist[nextIndex].track?.type,
+            true
+        );
+    };
+
+    const handlePrevTrack = () => {
+        const prevIndex = trackIndex > 0 ? trackIndex - 1 : playlist.length - 1;
+
+        playlistContext.dataTrack.funcTrack(
+            prevIndex,
+            playlist[prevIndex].track?.id,
+            playlist[prevIndex].track?.type,
+            true
+        );
+    };
+
+    const handleEnded = () => {
+        const nextIndex = trackIndex < playlist.length - 1 ? trackIndex + 1 : 0;
+
+        playlistContext.dataTrack.funcTrack(
+            nextIndex,
+            playlist[nextIndex].track?.id,
+            playlist[nextIndex].track?.type,
+            true
+        );
+    };
+
     return (
         <div className={cx('player__container')}>
             <div className={cx('player__details')}>
@@ -190,7 +223,7 @@ function Player() {
                         <ShuffleIcon />
                     </div>
 
-                    <div className={cx('icon')}>
+                    <div className={cx('icon')} onClick={handlePrevTrack}>
                         <PrevIcon />
                     </div>
 
@@ -210,7 +243,7 @@ function Player() {
                         </div>
                     )}
 
-                    <div className={cx('icon')}>
+                    <div className={cx('icon')} onClick={handleNextTrack}>
                         <NextIcon />
                     </div>
 
@@ -252,14 +285,6 @@ function Player() {
                             .format('mm:ss')}
                     </span>
                 </div>
-                <audio
-                    ref={audioRef}
-                    src={trackPlayer.url}
-                    onTimeUpdate={() => {
-                        setCurrentTime(audioRef.current.currentTime);
-                    }}
-                    onLoadedData={handleLoadedData}
-                />
             </div>
 
             <div className={cx('player__action')}>
@@ -293,6 +318,15 @@ function Player() {
                     />
                 </div>
             </div>
+            <audio
+                ref={audioRef}
+                src={trackPlayer.url}
+                onTimeUpdate={() => {
+                    setCurrentTime(audioRef.current.currentTime);
+                }}
+                onLoadedData={handleLoadedData}
+                onEnded={handleEnded}
+            />
         </div>
     );
 }
