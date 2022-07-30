@@ -92,7 +92,19 @@ function Playlist() {
 
     const playlistContext = useContext(dataContext);
 
+    const IdplaylistContext = playlistContext.dataPlaylist.id;
+
+    const IdTrack = playlist.tracks?.items
+        ?.map((item) => item.track?.id)
+        .slice(0, 1)
+        .toString();
+
     const isPlaying = playlistContext.dataTrack.isPlaying;
+
+    const handleSetActiveIcon = () => {
+        const isActive = isActiveIcon === true ? false : true;
+        setIsActiveIcon(isActive);
+    };
 
     useEffect(() => {
         const getPlaylist = async () => {
@@ -130,11 +142,6 @@ function Playlist() {
         getPlaylist();
     }, [id]);
 
-    const handleSetActiveIcon = () => {
-        const isActive = isActiveIcon === true ? false : true;
-        setIsActiveIcon(isActive);
-    };
-
     return (
         <div
             className={cx('playlist__container')}
@@ -146,12 +153,42 @@ function Playlist() {
                 <div className="container--not-padding-top">
                     <div className="border--bottom">
                         <div className={cx('playlist__actions')}>
-                            {isPlaying ? (
-                                <Button play large>
+                            {isPlaying && IdplaylistContext === playlist.id ? (
+                                <Button
+                                    play
+                                    large
+                                    onClick={() => {
+                                        playlistContext.dataPlaylist.funcPlaylist(
+                                            playlist
+                                        );
+
+                                        playlistContext.dataTrack.funcTrack(
+                                            0,
+                                            IdTrack,
+                                            'track',
+                                            false
+                                        );
+                                    }}
+                                >
                                     <PauseLargeIcon />
                                 </Button>
                             ) : (
-                                <Button play large>
+                                <Button
+                                    play
+                                    large
+                                    onClick={() => {
+                                        playlistContext.dataPlaylist.funcPlaylist(
+                                            playlist
+                                        );
+
+                                        playlistContext.dataTrack.funcTrack(
+                                            0,
+                                            IdTrack,
+                                            'track',
+                                            true
+                                        );
+                                    }}
+                                >
                                     <PlayLargeIcon />
                                 </Button>
                             )}
