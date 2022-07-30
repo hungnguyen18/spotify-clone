@@ -8,13 +8,11 @@ const cx = classNames.bind(styles);
 function PlaylistHeader({ data }) {
     const likes = new Intl.NumberFormat().format(data.followers?.total);
 
+    const img = data.images?.map((img) => img.url).slice(0, 1);
+
     return (
         <div className={cx('playlist__header')}>
-            <img
-                src={data.images?.map((img) => img.url).slice(0)}
-                alt="Img"
-                className={cx('playlist__img')}
-            />
+            <img src={img} alt="Img" className={cx('playlist__img')} />
 
             <div className={cx('playlist__info')}>
                 <span className={cx('playlist__title')}>PLAYLIST</span>

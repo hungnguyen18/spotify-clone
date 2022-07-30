@@ -20,10 +20,6 @@ const cx = classNames.bind(styles);
 function PlaylistTable({ playlist, res }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
     const [isActiveRow, setIsActiveRow] = useState();
-    const [isActivePlay, setIsActivePlay] = useState({
-        id: '',
-        isActive: false,
-    });
 
     const idContext = useContext(dataContext);
 
@@ -148,16 +144,12 @@ function PlaylistTable({ playlist, res }) {
                                 <div className={cx('stt')}>
                                     <span>{i + 1}</span>
 
-                                    {isActivePlay.isActive === true &&
-                                    isActivePlay.id === item.track.id ? (
+                                    {isPlaying === true &&
+                                    idTrack === item.track.id ? (
                                         <div
                                             style={{ display: 'flex' }}
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                setIsActivePlay({
-                                                    id: item.track.id,
-                                                    isActive: false,
-                                                });
 
                                                 idContext.dataPlaylist.funcPlaylist(
                                                     res
@@ -182,10 +174,6 @@ function PlaylistTable({ playlist, res }) {
                                             style={{ display: 'flex' }}
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                setIsActivePlay({
-                                                    id: item.track.id,
-                                                    isActive: true,
-                                                });
 
                                                 idContext.dataPlaylist.funcPlaylist(
                                                     res

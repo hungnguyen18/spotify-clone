@@ -8,6 +8,7 @@ import {
     HeartActiveIcon,
     HeartIcon,
     MoreMenuIcon,
+    PauseLargeIcon,
     PlayLargeIcon,
     SmallRightArrowIcon,
 } from '../../components/Icon';
@@ -91,6 +92,8 @@ function Playlist() {
 
     const playlistContext = useContext(dataContext);
 
+    const isPlaying = playlistContext.dataTrack.isPlaying;
+
     useEffect(() => {
         const getPlaylist = async () => {
             try {
@@ -143,9 +146,15 @@ function Playlist() {
                 <div className="container--not-padding-top">
                     <div className="border--bottom">
                         <div className={cx('playlist__actions')}>
-                            <Button play large>
-                                <PlayLargeIcon />
-                            </Button>
+                            {isPlaying ? (
+                                <Button play large>
+                                    <PauseLargeIcon />
+                                </Button>
+                            ) : (
+                                <Button play large>
+                                    <PlayLargeIcon />
+                                </Button>
+                            )}
 
                             <div
                                 className={cx('playlist__heart-icon')}

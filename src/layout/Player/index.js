@@ -44,10 +44,10 @@ function Player() {
     const trackIsPlaying = playlistContext.dataTrack.isPlaying;
     const playlist = playlistContext.dataPlaylist?.playlist;
 
-    useEffect(() => {
-        const idPlaylist = window.localStorage.getItem('idPlaylist');
-        const indexTrack = window.localStorage.getItem('indexTrack');
+    const idPlaylistLocalStorage = window.localStorage.getItem('idPlaylist');
+    const indexTrackLocalStorage = window.localStorage.getItem('indexTrack');
 
+    useEffect(() => {
         const getTrack = async () => {
             try {
                 switch (trackType) {
@@ -60,6 +60,7 @@ function Player() {
                             artist: playlist[trackIndex].track.artists[0].name,
                             url: playlist[trackIndex].track.preview_url,
                             data: playlist[trackIndex].track,
+                            isDefault: false,
                         });
 
                         window.localStorage.setItem(
@@ -80,16 +81,20 @@ function Player() {
                     default:
                         let PlaylistDefault = { id: null, index: null };
 
-                        if (idPlaylist === null) {
+                        if (indexTrackLocalStorage === null) {
                             PlaylistDefault.id = '37i9dQZF1DWVOaOWiVD1Lf';
                             PlaylistDefault.index = 0;
                         } else {
-                            PlaylistDefault.id = idPlaylist;
-                            PlaylistDefault.index = indexTrack;
+                            PlaylistDefault.id = idPlaylistLocalStorage;
+                            PlaylistDefault.index = indexTrackLocalStorage;
                         }
 
                         const resCurrentTrack = await spotifyApi.getPlaylist(
                             PlaylistDefault.id
+                        );
+
+                        playlistContext.dataPlaylist.funcPlaylist(
+                            resCurrentTrack
                         );
 
                         const currentTrack =
@@ -101,6 +106,7 @@ function Player() {
                             name: currentTrack.name,
                             artist: currentTrack.artists[0].name,
                             url: currentTrack.preview_url,
+                            isDefault: true,
                         });
                 }
             } catch (err) {
@@ -121,10 +127,39 @@ function Player() {
     const handlePlaying = () => {
         const isPlaying = Playing === false ? true : false;
 
-        if (isPlaying) {
-            audioRef.current.play();
+        if (trackPlayer.isDefault) {
+            if (isPlaying) {
+                audioRef.current.play();
+
+                playlistContext.dataTrack.funcTrack(
+                    indexTrackLocalStorage,
+                    playlist[indexTrackLocalStorage].track?.id,
+                    playlist[indexTrackLocalStorage].track?.type,
+                    true
+                );
+            } else {
+                audioRef.current.pause();
+            }
         } else {
-            audioRef.current.pause();
+            if (isPlaying) {
+                audioRef.current.play();
+
+                playlistContext.dataTrack.funcTrack(
+                    trackIndex,
+                    playlist[trackIndex].track?.id,
+                    playlist[trackIndex].track?.type,
+                    true
+                );
+            } else {
+                audioRef.current.pause();
+
+                playlistContext.dataTrack.funcTrack(
+                    trackIndex,
+                    playlist[trackIndex].track?.id,
+                    playlist[trackIndex].track?.type,
+                    false
+                );
+            }
         }
 
         setPlaying(isPlaying);
