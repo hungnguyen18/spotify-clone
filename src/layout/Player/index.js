@@ -45,7 +45,9 @@ function Player() {
     const playlist = playlistContext.dataPlaylist?.playlist;
 
     const idPlaylistLocalStorage = window.localStorage.getItem('idPlaylist');
-    const indexTrackLocalStorage = window.localStorage.getItem('indexTrack');
+    const indexTrackLocalStorage = Number(
+        window.localStorage.getItem('indexTrack')
+    );
 
     useEffect(() => {
         const getTrack = async () => {
@@ -183,7 +185,11 @@ function Player() {
     };
 
     const handleNextTrack = () => {
-        const nextIndex = trackIndex < playlist.length - 1 ? trackIndex + 1 : 0;
+        const isIndex = trackPlayer.isDefault
+            ? indexTrackLocalStorage
+            : trackIndex;
+
+        const nextIndex = isIndex < playlist.length - 1 ? isIndex + 1 : 0;
 
         playlistContext.dataTrack.funcTrack(
             nextIndex,
@@ -194,7 +200,11 @@ function Player() {
     };
 
     const handlePrevTrack = () => {
-        const prevIndex = trackIndex > 0 ? trackIndex - 1 : playlist.length - 1;
+        const isIndex = trackPlayer.isDefault
+            ? indexTrackLocalStorage
+            : trackIndex;
+
+        const prevIndex = isIndex > 0 ? isIndex - 1 : playlist.length - 1;
 
         playlistContext.dataTrack.funcTrack(
             prevIndex,
@@ -202,10 +212,16 @@ function Player() {
             playlist[prevIndex].track?.type,
             true
         );
+
+        console.log(prevIndex);
     };
 
     const handleEnded = () => {
-        const nextIndex = trackIndex < playlist.length - 1 ? trackIndex + 1 : 0;
+        const isIndex = trackPlayer.isDefault
+            ? indexTrackLocalStorage
+            : trackIndex;
+
+        const nextIndex = isIndex < playlist.length - 1 ? isIndex + 1 : 0;
 
         playlistContext.dataTrack.funcTrack(
             nextIndex,
