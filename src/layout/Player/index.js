@@ -83,7 +83,7 @@ function Player() {
                     default:
                         let PlaylistDefault = { id: null, index: null };
 
-                        if (indexTrackLocalStorage === null) {
+                        if (idPlaylistLocalStorage === null) {
                             PlaylistDefault.id = '37i9dQZF1DWVOaOWiVD1Lf';
                             PlaylistDefault.index = 0;
                         } else {
