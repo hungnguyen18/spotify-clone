@@ -21,18 +21,6 @@ function PlaylistTable({ playlist, res }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
     const [isActiveRow, setIsActiveRow] = useState();
 
-    const idContext = useContext(dataContext);
-
-    const isPlaying = idContext.dataTrack.isPlaying;
-
-    const idTrack = idContext.dataTrack.id;
-
-    const handleSetActiveIcon = () => {
-        const isActive = isActiveIcon === true ? false : true;
-
-        setIsActiveIcon(isActive);
-    };
-
     const dataMenuPopper = [
         {
             id: 1,
@@ -106,6 +94,16 @@ function PlaylistTable({ playlist, res }) {
             styles: null,
         },
     ];
+
+    const idContext = useContext(dataContext);
+    const isPlaying = idContext.dataTrack.isPlaying;
+    const idTrack = idContext.dataTrack.id;
+
+    const handleSetActiveIcon = () => {
+        const isActive = isActiveIcon === true ? false : true;
+
+        setIsActiveIcon(isActive);
+    };
 
     const handleSetId = (id) => {
         setIsActiveRow(id);

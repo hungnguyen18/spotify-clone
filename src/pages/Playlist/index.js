@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Playlist.module.scss';
 import { useLocation } from 'react-router-dom';
@@ -22,9 +22,7 @@ const cx = classNames.bind(styles);
 
 function Playlist() {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
-
-    const [playlist, setPlaylist] = useState([]);
-    const location = useLocation();
+    const [playlist, setPlaylist] = useState({});
 
     const dataMenuPopper = [
         {
@@ -88,18 +86,19 @@ function Playlist() {
         },
     ];
 
+    const location = useLocation();
     const id = location.state.id;
 
+    //Data context
     const playlistContext = useContext(dataContext);
     const idPlaylistContext = playlistContext.dataPlaylist.id;
     const backgroundColor = playlistContext.dataHeader.bgColor;
+    const isPlaying = playlistContext.dataTrack.isPlaying;
 
     const IdTrack = playlist.tracks?.items
         ?.map((item) => item.track?.id)
         .slice(0, 1)
         .toString();
-
-    const isPlaying = playlistContext.dataTrack.isPlaying;
 
     const handleSetActiveIcon = () => {
         const isActive = isActiveIcon === true ? false : true;
@@ -226,4 +225,4 @@ function Playlist() {
     );
 }
 
-export default Playlist;
+export default memo(Playlist);

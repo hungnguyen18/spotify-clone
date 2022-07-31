@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { memo, useContext, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -34,7 +34,7 @@ function Player() {
 
     const audioRef = useRef();
 
-    //DataPlaylists
+    //Data context
     const playlistContext = useContext(dataContext);
 
     let trackIndex = playlistContext.dataTrack?.index;
@@ -214,8 +214,6 @@ function Player() {
             playlist[prevIndex].track?.type,
             true
         );
-
-        console.log(prevIndex);
     };
 
     const handleEnded = () => {
@@ -384,4 +382,4 @@ function Player() {
     );
 }
 
-export default Player;
+export default memo(Player);
