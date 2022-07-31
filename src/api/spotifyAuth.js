@@ -1,6 +1,10 @@
 const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const clientID = 'eda06710579b49d0a0d768764ec37158';
-const redirectUri = 'https://spotify-clone-tau-ten.vercel.app';
+const redirectUri = [
+    'http://localhost:3000',
+    'https://spotify-clone-tau-ten.vercel.app',
+];
+// const redirectUri = 'https://spotify-clone-tau-ten.vercel.app';
 const scopes = [
     'streaming',
     'user-read-email',
@@ -13,6 +17,6 @@ const scopes = [
     'user-read-recently-played',
 ];
 
-export const loginEndpoint = `${authEndpoint}client_id=${clientID}&redirect_uri=${redirectUri}&scope=${scopes.join(
+export const loginEndpoint = `${authEndpoint}client_id=${clientID}&redirect_uri=${redirectUri.join(
     '%20'
-)}&response_type=token&show_dialog=true`;
+)}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
