@@ -22,7 +22,7 @@ const cx = classNames.bind(styles);
 
 function Playlist() {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
-    const [backgroundColor, setBackgroundColor] = useState('');
+
     const [playlist, setPlaylist] = useState([]);
     const location = useLocation();
 
@@ -91,8 +91,8 @@ function Playlist() {
     const id = location.state.id;
 
     const playlistContext = useContext(dataContext);
-
-    const IdplaylistContext = playlistContext.dataPlaylist.id;
+    const idPlaylistContext = playlistContext.dataPlaylist.id;
+    const backgroundColor = playlistContext.dataHeader.bgColor;
 
     const IdTrack = playlist.tracks?.items
         ?.map((item) => item.track?.id)
@@ -107,37 +107,25 @@ function Playlist() {
     };
 
     useEffect(() => {
-        const getPlaylist = async () => {
-            try {
-                const res = await spotifyApi.getPlaylist(id);
-
-                setPlaylist(res);
-                playlistContext.dataHeader.funcHeader(res);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-
         //Random color
         const random_rgba = () => {
             const o = Math.round,
                 r = Math.random,
                 s = 255;
 
-            return (
-                'rgba(' +
-                o(r() * s) +
-                ',' +
-                o(r() * s) +
-                ',' +
-                o(r() * s) +
-                ',' +
-                r().toFixed(1) +
-                ')'
-            );
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s);
         };
 
-        setBackgroundColor(random_rgba());
+        const getPlaylist = async () => {
+            try {
+                const res = await spotifyApi.getPlaylist(id);
+
+                setPlaylist(res);
+                playlistContext.dataHeader.funcHeader(res, random_rgba());
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
         getPlaylist();
     }, [id]);
@@ -153,7 +141,7 @@ function Playlist() {
                 <div className="container--not-padding-top">
                     <div className="border--bottom">
                         <div className={cx('playlist__actions')}>
-                            {isPlaying && IdplaylistContext === playlist.id ? (
+                            {isPlaying && idPlaylistContext === playlist.id ? (
                                 <Button
                                     play
                                     large

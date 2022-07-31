@@ -11,12 +11,12 @@ function DataProvider({ children }) {
         setTrack({ index: i, id: id, type: type, isPlaying: playing });
     }, []);
 
-    const funcCallbackPlaylist = useCallback((item) => {
-        setPlaylist(item);
+    const funcCallbackPlaylist = useCallback((items) => {
+        setPlaylist(items);
     }, []);
 
-    const funcCallbackHeader = useCallback((item) => {
-        setHeader(item);
+    const funcCallbackHeader = useCallback((items, bgColor) => {
+        setHeader({ data: items, bgColor: bgColor });
     }, []);
 
     const data = {
@@ -35,7 +35,8 @@ function DataProvider({ children }) {
             funcPlaylist: funcCallbackPlaylist,
         },
         dataHeader: {
-            name: header.name,
+            name: header.data?.name,
+            bgColor: header.bgColor,
             funcHeader: funcCallbackHeader,
         },
     };

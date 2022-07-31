@@ -144,8 +144,7 @@ function PlaylistTable({ playlist, res }) {
                                 <div className={cx('stt')}>
                                     <span>{i + 1}</span>
 
-                                    {isPlaying === true &&
-                                    idTrack === item.track.id ? (
+                                    {isPlaying && idTrack === item.track.id ? (
                                         <div
                                             style={{ display: 'flex' }}
                                             onClick={(e) => {

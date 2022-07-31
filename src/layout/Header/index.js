@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 import { Col, Row } from 'antd';
@@ -17,6 +17,7 @@ function Header({ shrink }) {
     const [locationMenu, setLocationMenu] = useState('playlists');
 
     const location = useLocation();
+    const headerRef = useRef();
 
     const pathMenu =
         location.pathname === '/collection/playlists'
@@ -29,10 +30,21 @@ function Header({ shrink }) {
 
     const PlaylistContext = useContext(dataContext);
 
-    // console.log(PlaylistContext);
+    const bgColor = PlaylistContext.dataHeader?.bgColor;
 
     return (
-        <div className={cx('header__container', shrink.shrink)}>
+        <div
+            ref={headerRef}
+            className={cx('header__container', shrink.shrink)}
+            style={{
+                backgroundColor:
+                    location.pathname === `/playlist/${location.state?.id}`
+                        ? !!shrink.shrink
+                            ? bgColor
+                            : 'transparent'
+                        : null,
+            }}
+        >
             <div className={cx('header__act')}>
                 <Button icon>
                     <ArrowLeftIcon />
