@@ -121,7 +121,13 @@ function Playlist() {
                 const res = await spotifyApi.getPlaylist(id);
 
                 setPlaylist(res);
-                playlistContext.dataHeader.funcHeader(res, random_rgba());
+
+                playlistContext.dataHeader.funcHeader(
+                    res?.id,
+                    res?.name,
+                    res.tracks.items,
+                    random_rgba()
+                );
             } catch (err) {
                 console.log(err);
             }
@@ -147,7 +153,9 @@ function Playlist() {
                                     large
                                     onClick={() => {
                                         playlistContext.dataPlaylist.funcPlaylist(
-                                            playlist
+                                            playlist?.id,
+                                            playlist?.name,
+                                            playlist.tracks?.items
                                         );
 
                                         playlistContext.dataTrack.funcTrack(
@@ -166,7 +174,9 @@ function Playlist() {
                                     large
                                     onClick={() => {
                                         playlistContext.dataPlaylist.funcPlaylist(
-                                            playlist
+                                            playlist?.id,
+                                            playlist?.name,
+                                            playlist.tracks?.items
                                         );
 
                                         playlistContext.dataTrack.funcTrack(

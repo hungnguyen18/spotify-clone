@@ -17,10 +17,10 @@ function Button({
     small = false,
     medium = false,
     large = false,
-    onClick,
     to,
     href,
-    passProps,
+    onClick,
+    ...passProps
 }) {
     let Comp = 'button';
 

@@ -96,7 +96,9 @@ function Player() {
                         );
 
                         playlistContext.dataPlaylist.funcPlaylist(
-                            resCurrentTrack
+                            resCurrentTrack?.id,
+                            resCurrentTrack?.name,
+                            resCurrentTrack.tracks?.items
                         );
 
                         const currentTrack =

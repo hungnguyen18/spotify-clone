@@ -151,7 +151,9 @@ function PlaylistTable({ playlist, res }) {
                                                 e.preventDefault();
 
                                                 idContext.dataPlaylist.funcPlaylist(
-                                                    res
+                                                    res?.id,
+                                                    res?.name,
+                                                    res.tracks?.items
                                                 );
 
                                                 idContext.dataTrack.funcTrack(
@@ -175,7 +177,9 @@ function PlaylistTable({ playlist, res }) {
                                                 e.preventDefault();
 
                                                 idContext.dataPlaylist.funcPlaylist(
-                                                    res
+                                                    res?.id,
+                                                    res?.name,
+                                                    res.tracks?.items
                                                 );
 
                                                 idContext.dataTrack.funcTrack(

@@ -7,7 +7,12 @@ import styles from './Header.module.scss';
 import SearchInput from './SearchInput';
 import User from './User';
 import Button from '../../components/Button';
-import { ArrowLeftIcon, ArrowRightIcon, PlayIcon } from '../../components/Icon';
+import {
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    PauseLargeIcon,
+    PlayIcon,
+} from '../../components/Icon';
 import MenuLibrary from './MenuLibrary';
 import { dataContext } from '../../utils/DataProvider';
 
@@ -28,9 +33,15 @@ function Header({ shrink }) {
         setLocationMenu(nameLocation);
     };
 
-    const PlaylistContext = useContext(dataContext);
+    //dataContext
+    const playlistContext = useContext(dataContext);
+    const bgColor = playlistContext.dataHeader?.bgColor;
+    const playlist = playlistContext.dataHeader?.playlist;
+    const idHeader = playlistContext.dataHeader?.id;
+    const namePlaylist = playlistContext?.dataHeader?.name;
 
-    const bgColor = PlaylistContext.dataHeader?.bgColor;
+    const isPlaying = playlistContext.dataTrack.isPlaying;
+    const idPlaylist = playlistContext.dataPlaylist?.id;
 
     return (
         <div
@@ -80,12 +91,57 @@ function Header({ shrink }) {
                 shrink.shrinkPlay && (
                     <div className={cx('header__wrapper')}>
                         <div className={cx('header__playlist')}>
-                            <Button play small className={cx('header__play')}>
-                                <PlayIcon />
-                            </Button>
+                            {isPlaying && idPlaylist === location.state?.id ? (
+                                <Button
+                                    play
+                                    small
+                                    className={cx('header__play')}
+                                    onClick={() => {
+                                        playlistContext.dataPlaylist.funcPlaylist(
+                                            idHeader,
+                                            namePlaylist,
+                                            playlist
+                                        );
+
+                                        playlistContext.dataTrack.funcTrack(
+                                            0,
+                                            playlist[0].track?.id,
+                                            playlist[0].track?.type,
+                                            false
+                                        );
+                                    }}
+                                >
+                                    <PauseLargeIcon
+                                        width="2.4rem"
+                                        height="2.4rem"
+                                    />
+                                </Button>
+                            ) : (
+                                <Button
+                                    play
+                                    small
+                                    className={cx('header__play')}
+                                    onClick={() => {
+                                        playlistContext.dataPlaylist.funcPlaylist(
+                                            idHeader,
+                                            namePlaylist,
+                                            playlist
+                                        );
+
+                                        playlistContext.dataTrack.funcTrack(
+                                            0,
+                                            playlist[0].track?.id,
+                                            playlist[0].track?.type,
+                                            true
+                                        );
+                                    }}
+                                >
+                                    <PlayIcon />
+                                </Button>
+                            )}
 
                             <span className={cx('header__title')}>
-                                {PlaylistContext?.dataHeader?.name}
+                                {namePlaylist}
                             </span>
                         </div>
                     </div>

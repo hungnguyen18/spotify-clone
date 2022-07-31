@@ -3,7 +3,7 @@ import React, { createContext, useCallback, useState } from 'react';
 const dataContext = createContext();
 
 function DataProvider({ children }) {
-    const [track, setTrack] = useState({ index: null, id: '', type: '' });
+    const [track, setTrack] = useState({});
     const [playlist, setPlaylist] = useState({});
     const [header, setHeader] = useState({});
 
@@ -11,12 +11,12 @@ function DataProvider({ children }) {
         setTrack({ index: i, id: id, type: type, isPlaying: playing });
     }, []);
 
-    const funcCallbackPlaylist = useCallback((items) => {
-        setPlaylist(items);
+    const funcCallbackPlaylist = useCallback((id, name, playlist) => {
+        setPlaylist({ id: id, name: name, playlist: playlist });
     }, []);
 
-    const funcCallbackHeader = useCallback((items, bgColor) => {
-        setHeader({ data: items, bgColor: bgColor });
+    const funcCallbackHeader = useCallback((id, name, playlist, bgColor) => {
+        setHeader({ id: id, name: name, playlist: playlist, bgColor: bgColor });
     }, []);
 
     const data = {
@@ -29,13 +29,14 @@ function DataProvider({ children }) {
         },
         dataPlaylist: {
             id: playlist.id,
-            type: 'playlist',
             name: playlist.name,
-            playlist: playlist.tracks?.items,
+            playlist: playlist.playlist,
             funcPlaylist: funcCallbackPlaylist,
         },
         dataHeader: {
-            name: header.data?.name,
+            id: header.id,
+            name: header.name,
+            playlist: header.playlist,
             bgColor: header.bgColor,
             funcHeader: funcCallbackHeader,
         },
