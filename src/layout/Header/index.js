@@ -22,7 +22,6 @@ function Header({ shrink }) {
     const [locationMenu, setLocationMenu] = useState('playlists');
 
     const location = useLocation();
-    const headerRef = useRef();
 
     const pathMenu =
         location.pathname === '/collection/playlists'
@@ -45,7 +44,6 @@ function Header({ shrink }) {
 
     return (
         <div
-            ref={headerRef}
             className={cx('header__container', shrink.shrink)}
             style={{
                 backgroundColor:

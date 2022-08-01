@@ -1,15 +1,45 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Skeleton } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { memo } from 'react';
 
 import styles from './Playlist.module.scss';
-import { PlayIcon } from '../Icon';
-import { memo } from 'react';
+import { PauseLargeIcon, PlayIcon } from '../Icon';
 import Button from '../Button';
+import { dataContext } from '../../utils/DataProvider';
+import spotifyApi from '../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
 
-function Playlist({ playlist, playPlaylist, skeleton, liked }) {
+function Playlist({ playlist, skeleton, liked }) {
+    const [playlistItems, setPlaylistItems] = useState({});
+
+    //Data context
+    const playlistContext = useContext(dataContext);
+    const isPlaying = playlistContext.dataTrack.isPlaying;
+    const idPlaylist = playlistContext.dataPlaylist.id;
+
+    const navigate = useNavigate();
+
+    const playPlaylist = (id) => {
+        navigate(`/playlist/${id}`, { state: { id: id } });
+    };
+
+    useEffect(() => {
+        const getPlaylistItems = async () => {
+            try {
+                const res = await spotifyApi.getPlaylistItems(playlist.id);
+
+                setPlaylistItems(res.items);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        getPlaylistItems();
+    }, []);
+
     return liked ? (
         <div className={cx('playlist__liked')}>
             <div className={cx('liked__wrapper')}>
@@ -50,9 +80,56 @@ function Playlist({ playlist, playPlaylist, skeleton, liked }) {
                     <img src={playlist.images[0].url} alt="" />
 
                     <div className={cx('playlist__fade')}>
-                        <Button play small>
-                            <PlayIcon />
-                        </Button>
+                        {isPlaying && idPlaylist === playlist.id ? (
+                            <Button
+                                play
+                                small
+                                onClick={(e) => {
+                                    e.stopPropagation();
+
+                                    playlistContext.dataPlaylist.funcPlaylist(
+                                        playlist.id,
+                                        playlist.name,
+                                        playlistItems
+                                    );
+
+                                    playlistContext.dataTrack.funcTrack(
+                                        0,
+                                        playlistItems[0].track?.id,
+                                        playlistItems[0].track?.type,
+                                        false
+                                    );
+                                }}
+                            >
+                                <PauseLargeIcon
+                                    width="2.4rem"
+                                    height="2.4rem"
+                                />
+                            </Button>
+                        ) : (
+                            <Button
+                                play
+                                small
+                                onClick={(e) => {
+                                    e.stopPropagation();
+
+                                    playlistContext.dataPlaylist.funcPlaylist(
+                                        playlist.id,
+                                        playlist.name,
+                                        playlistItems
+                                    );
+
+                                    playlistContext.dataTrack.funcTrack(
+                                        0,
+                                        playlistItems[0].track?.id,
+                                        playlistItems[0].track?.type,
+                                        true
+                                    );
+                                }}
+                            >
+                                <PlayIcon />
+                            </Button>
+                        )}
                     </div>
                 </div>
 

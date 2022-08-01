@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import { useNavigate } from 'react-router-dom';
 import { Col, Row } from 'antd';
 
 import styles from './Playlists.module.scss';
@@ -36,12 +35,6 @@ function Playlists() {
         myPlaylists();
     }, []);
 
-    const navigate = useNavigate();
-
-    const playPlaylist = (id) => {
-        navigate(`/playlist/${id}`, { state: { id: id } });
-    };
-
     return (
         <div className="container">
             <div className="border--bottom">
@@ -66,10 +59,7 @@ function Playlists() {
                                     xs={12}
                                     key={playlist.id}
                                 >
-                                    <Playlist
-                                        playlist={playlist}
-                                        playPlaylist={playPlaylist}
-                                    />
+                                    <Playlist playlist={playlist} />
                                 </Col>
                             ))}
                         </Row>
@@ -91,4 +81,4 @@ function Playlists() {
     );
 }
 
-export default Playlists;
+export default memo(Playlists);
