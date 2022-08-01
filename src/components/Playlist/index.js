@@ -37,7 +37,9 @@ function Playlist({ playlist, skeleton, liked }) {
             }
         };
 
-        getPlaylistItems();
+        if (playlist.id) {
+            getPlaylistItems();
+        }
     }, []);
 
     return liked ? (

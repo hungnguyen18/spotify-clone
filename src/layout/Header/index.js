@@ -19,18 +19,12 @@ import { dataContext } from '../../utils/DataProvider';
 const cx = classNames.bind(styles);
 
 function Header({ shrink }) {
-    const [locationMenu, setLocationMenu] = useState('playlists');
-
     const location = useLocation();
 
     const pathMenu =
         location.pathname === '/collection/playlists'
             ? '/collection/playlists'
-            : `/collection/${locationMenu}`;
-
-    const handleSetLocationMenu = (nameLocation) => {
-        setLocationMenu(nameLocation);
-    };
+            : `/collection/${location.pathname.slice(12)}`;
 
     //dataContext
     const playlistContext = useContext(dataContext);
@@ -77,9 +71,7 @@ function Header({ shrink }) {
                 <div className={cx('header__wrapper')}>
                     <Row>
                         <Col xl={24} md={24} span={0}>
-                            <MenuLibrary
-                                handleSetLocationMenu={handleSetLocationMenu}
-                            />
+                            <MenuLibrary />
                         </Col>
                     </Row>
                 </div>

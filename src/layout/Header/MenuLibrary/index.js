@@ -6,7 +6,7 @@ import styles from './MenuLibrary.module.scss';
 
 const cx = classNames.bind(styles);
 
-function MenuLibrary({ handleSetLocationMenu }) {
+function MenuLibrary() {
     return (
         <div className={cx('header__menu')}>
             <NavLink
@@ -16,7 +16,6 @@ function MenuLibrary({ handleSetLocationMenu }) {
                     })
                 }
                 to="/collection/playlists"
-                onClick={() => handleSetLocationMenu('playlists')}
             >
                 <span>Playlist</span>
             </NavLink>
@@ -28,7 +27,6 @@ function MenuLibrary({ handleSetLocationMenu }) {
                     })
                 }
                 to="/collection/podcasts"
-                onClick={() => handleSetLocationMenu('podcasts')}
             >
                 <span>Podcasts</span>
             </NavLink>
@@ -40,7 +38,6 @@ function MenuLibrary({ handleSetLocationMenu }) {
                     })
                 }
                 to="/collection/artists"
-                onClick={() => handleSetLocationMenu('artists')}
             >
                 <span>Artists</span>
             </NavLink>
@@ -52,7 +49,6 @@ function MenuLibrary({ handleSetLocationMenu }) {
                     })
                 }
                 to="/collection/albums"
-                onClick={() => handleSetLocationMenu('albums')}
             >
                 <span>Albums</span>
             </NavLink>

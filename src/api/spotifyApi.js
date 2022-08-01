@@ -25,6 +25,14 @@ const spotifyApi = {
         const url = `me/player/currently-playing`;
         return axiosClient.get(url);
     },
+    getMyPodcasts: () => {
+        const url = `me/shows`;
+        return axiosClient.get(url);
+    },
+    getMyEpisodesLiked: (offset, limit) => {
+        const url = `me/episodes?offset=${offset}&limit=${limit}`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;
