@@ -40,7 +40,7 @@ function Artists() {
                             xs={12}
                             key={artist.id}
                         >
-                            <Artist artist={artist} />
+                            <Artist playlist={artist} />
                         </Col>
                     ))}
                 </Row>

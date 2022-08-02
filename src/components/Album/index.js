@@ -8,12 +8,12 @@ import { Skeleton } from 'antd';
 
 const cx = classNames.bind(styles);
 
-function Album({ album, skeleton }) {
+function Album({ playlist, skeleton }) {
     return (
         <div className={cx('album__container')}>
             <div className={cx('album__wrapper')}>
                 <div className={cx('album__img')}>
-                    <img src={album.album.images[0]?.url} alt="" />
+                    <img src={playlist.images[0]?.url} alt="" />
 
                     <div className={cx('album__fade')}>
                         {/* {isPlaying && idPlaylist === playlist.id ? ( */}
@@ -70,12 +70,10 @@ function Album({ album, skeleton }) {
                 </div>
 
                 <div className={cx('album__info')}>
-                    <span className={cx('album__title')}>
-                        {album.album.name}
-                    </span>
+                    <span className={cx('album__title')}>{playlist.name}</span>
 
                     <span className={cx('album__subtitle')}>
-                        {album.album.artists[0]?.name}
+                        {playlist.artists[0]?.name}
                     </span>
                 </div>
             </div>

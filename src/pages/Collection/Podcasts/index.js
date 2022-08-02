@@ -40,7 +40,11 @@ function Podcasts() {
 
                 <Row gutter={[20, 20]}>
                     <Col xxl={6} xl={8} md={18} sm={24} xs={24}>
-                        <Podcast podcast={episodes} skeleton={skeleton} liked />
+                        <Podcast
+                            playlist={episodes}
+                            skeleton={skeleton}
+                            liked
+                        />
                     </Col>
 
                     {podcasts?.map((podcast) => (
@@ -52,7 +56,7 @@ function Podcasts() {
                             xs={12}
                             key={podcast.show.id}
                         >
-                            <Podcast podcast={podcast} />
+                            <Podcast playlist={podcast} />
                         </Col>
                     ))}
                 </Row>

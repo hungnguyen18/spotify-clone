@@ -8,12 +8,12 @@ import { Skeleton } from 'antd';
 
 const cx = classNames.bind(styles);
 
-function Podcast({ podcast, skeleton, liked }) {
+function Podcast({ playlist, skeleton, liked }) {
     return liked ? (
         <div className={cx('podcasts__liked')}>
             <div className={cx('liked__wrapper')}>
                 <span className={cx('liked__song')}>
-                    {podcast?.items.map((item) => (
+                    {playlist?.items.map((item) => (
                         <Skeleton
                             active
                             loading={skeleton}
@@ -33,7 +33,7 @@ function Podcast({ podcast, skeleton, liked }) {
 
                 <div className={cx('liked__title')}>
                     <h1>Your Episodes</h1>
-                    <span>{podcast?.total} episodes</span>
+                    <span>{playlist?.total} episodes</span>
                 </div>
 
                 <div className={cx('liked__fade')}>
@@ -47,16 +47,16 @@ function Podcast({ podcast, skeleton, liked }) {
         <div className={cx('podcast__container')}>
             <div className={cx('podcast__wrapper')}>
                 <div className={cx('podcast__img')}>
-                    <img src={podcast.show.images[0].url} alt="" />
+                    <img src={playlist.show.images[0].url} alt="" />
                 </div>
 
                 <div className={cx('podcast__info')}>
                     <span className={cx('podcast__title')}>
-                        {podcast.show.name}
+                        {playlist.show.name}
                     </span>
 
                     <span className={cx('podcast__subtitle')}>
-                        {podcast.show.publisher}
+                        {playlist.show.publisher}
                     </span>
                 </div>
             </div>

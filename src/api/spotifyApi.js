@@ -41,6 +41,14 @@ const spotifyApi = {
         const url = `me/albums`;
         return axiosClient.get(url);
     },
+    getFeaturedPlaylists: (country) => {
+        const url = `browse/featured-playlists?country=${country}`;
+        return axiosClient.get(url);
+    },
+    getNewReleases: (country) => {
+        const url = `browse/new-releases?country=${country}`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;

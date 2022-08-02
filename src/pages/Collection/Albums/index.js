@@ -40,7 +40,7 @@ function Albums() {
                             xs={12}
                             key={album.id}
                         >
-                            <Album album={album} />
+                            <Album playlist={album.album} />
                         </Col>
                     ))}
                 </Row>

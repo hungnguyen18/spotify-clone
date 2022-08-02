@@ -13,7 +13,7 @@ import spotifyApi from '../../api/spotifyApi';
 const cx = classNames.bind(styles);
 
 function Playlist({ playlist, skeleton, liked }) {
-    const [playlistItems, setPlaylistItems] = useState({});
+    const [playlistItems, setPlaylistItems] = useState();
 
     //Data context
     const playlistContext = useContext(dataContext);
@@ -75,7 +75,7 @@ function Playlist({ playlist, skeleton, liked }) {
     ) : (
         <div
             className={cx('playlist__container')}
-            onClick={() => playPlaylist(playlist.id)}
+            onClick={() => playPlaylist(playlist?.id)}
         >
             <div className={cx('playlist__wrapper')}>
                 <div className={cx('playlist__img')}>
