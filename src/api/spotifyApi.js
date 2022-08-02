@@ -33,6 +33,14 @@ const spotifyApi = {
         const url = `me/episodes?offset=${offset}&limit=${limit}`;
         return axiosClient.get(url);
     },
+    getFollowedArtists: () => {
+        const url = `me/following?type=artist`;
+        return axiosClient.get(url);
+    },
+    getMyAlbums: () => {
+        const url = `me/albums`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;
