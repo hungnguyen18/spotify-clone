@@ -11,7 +11,7 @@ import spotifyApi from '../../api/spotifyApi';
 
 const cx = classNames.bind(styles);
 
-function List({ type, category, country = 'VN' }) {
+function List({ type, category, country = 'VN', offset = 0, limit = 6 }) {
     const [items, setItems] = useState([]);
 
     const Comp = (type, item) => {
@@ -48,11 +48,12 @@ function List({ type, category, country = 'VN' }) {
                 switch (category) {
                     case 'featured':
                         res = await spotifyApi.getFeaturedPlaylists(country);
-                        setItems(res.playlists?.items.slice(0, 6));
+
+                        setItems(res.playlists?.items.slice(offset, limit));
                         break;
                     case 'releases':
                         res = await spotifyApi.getNewReleases(country);
-                        setItems(res.albums?.items.slice(0, 6));
+                        setItems(res.albums?.items.slice(offset, limit));
                         break;
                     default:
                         console.log('default');
@@ -61,19 +62,19 @@ function List({ type, category, country = 'VN' }) {
                 switch (type) {
                     case 'playlists':
                         res = await spotifyApi.getMyPlaylists();
-                        setItems(res?.items.slice(0, 6));
+                        setItems(res?.items.slice(offset, limit));
                         break;
                     case 'podcasts':
                         res = await spotifyApi.getMyPodcasts();
-                        setItems(res.items.slice(0, 6));
+                        setItems(res.items.slice(offset, limit));
                         break;
                     case 'albums':
                         res = await spotifyApi.getMyAlbums();
-                        setItems(res.items?.slice(0, 6));
+                        setItems(res.items?.slice(offset, limit));
                         break;
                     case 'artists':
                         res = await spotifyApi.getFollowedArtists();
-                        setItems(res?.artists.items.slice(0, 6));
+                        setItems(res?.artists.items.slice(offset, limit));
                         break;
                     default:
                         console.log('default');
