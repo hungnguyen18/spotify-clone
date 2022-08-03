@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Home.module.scss';
@@ -70,12 +70,12 @@ function Home() {
 
                 <div className={cx('section')}>
                     <div className={cx('section__title')}>
-                        <h2>New releases</h2>
+                        <h2>New releases albums</h2>
                         <span>
                             <Link
                                 to="section"
                                 state={{
-                                    title: 'New releases',
+                                    title: 'New releases albums',
                                     type: 'releases',
                                     country: 'VN',
                                 }}

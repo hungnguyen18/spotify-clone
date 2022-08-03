@@ -49,6 +49,10 @@ const spotifyApi = {
         const url = `browse/new-releases?country=${country}`;
         return axiosClient.get(url);
     },
+    getGenres: () => {
+        const url = `recommendations/available-genre-seeds`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;
