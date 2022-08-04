@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { Row } from 'antd';
 import React, { memo, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
@@ -6,7 +6,7 @@ import styles from './Search.module.scss';
 import spotifyApi from '../../api/spotifyApi';
 import { dataContext } from '../../utils/DataProvider';
 import Genre from './Genre';
-import useDebouce from '../../hooks/useDebouce';
+import useDebounce from '../../hooks/useDebounce';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +21,7 @@ function Search() {
     });
 
     const searchContext = useContext(dataContext);
-    const searchValue = useDebouce(searchContext.dataSearch.result, 500);
+    const searchValue = useDebounce(searchContext.dataSearch.result, 500);
 
     console.log(result);
 
