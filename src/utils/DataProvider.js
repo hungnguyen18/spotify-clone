@@ -6,6 +6,7 @@ function DataProvider({ children }) {
     const [track, setTrack] = useState({});
     const [playlist, setPlaylist] = useState({});
     const [header, setHeader] = useState({});
+    const [search, setSearch] = useState('');
 
     const funcCallbackTrack = useCallback((i, id, type, playing) => {
         setTrack({ index: i, id: id, type: type, isPlaying: playing });
@@ -17,6 +18,10 @@ function DataProvider({ children }) {
 
     const funcCallbackHeader = useCallback((id, name, playlist, bgColor) => {
         setHeader({ id: id, name: name, playlist: playlist, bgColor: bgColor });
+    }, []);
+
+    const funcCallbackSearch = useCallback((result) => {
+        setSearch(result);
     }, []);
 
     const data = {
@@ -39,6 +44,10 @@ function DataProvider({ children }) {
             playlist: header.playlist,
             bgColor: header.bgColor,
             funcHeader: funcCallbackHeader,
+        },
+        dataSearch: {
+            result: search,
+            funcSearch: funcCallbackSearch,
         },
     };
 

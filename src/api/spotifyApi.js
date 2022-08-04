@@ -53,6 +53,10 @@ const spotifyApi = {
         const url = `recommendations/available-genre-seeds`;
         return axiosClient.get(url);
     },
+    getSearch: (q, type) => {
+        const url = `search?q=${q}&type=${type}`;
+        return axiosClient.get(url);
+    },
 };
 
 export default spotifyApi;

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { startTransition, useContext, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Search.module.scss';
 
 import { BigSearchIcon, ClearSearchIcon } from '../../../components/Icon';
 import { useRef } from 'react';
+import { dataContext } from '../../../utils/DataProvider';
 
 const cx = classNames.bind(styles);
 
@@ -12,18 +13,24 @@ function SearchInput() {
     const [searchValue, setSearchValue] = useState('');
     // const [searchResult, setSearchResult] = useState([]);
 
+    const searchContext = useContext(dataContext);
+
     const inputRef = useRef();
 
     const handleChange = (e) => {
         const searchValue = e.target.value;
 
         if (!searchValue.startsWith(' ')) {
-            setSearchValue(searchValue);
+            startTransition(() => {
+                setSearchValue(searchValue);
+                searchContext.dataSearch.funcSearch(searchValue);
+            });
         }
     };
 
     const handleClear = () => {
         setSearchValue('');
+        searchContext.dataSearch.funcSearch('');
         inputRef.current.focus();
     };
 
