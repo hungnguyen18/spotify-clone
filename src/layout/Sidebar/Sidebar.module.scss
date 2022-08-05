@@ -18,6 +18,12 @@
     max-width: 131px;
     width: 100%;
     color: var(--white);
+
+    a {
+        &:hover {
+            color: var(--white);
+        }
+    }
 }
 
 .sidebar__menu {
