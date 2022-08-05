@@ -131,7 +131,55 @@ function PlaylistTable({ playlist, res, search = false }) {
                                         alt=""
                                     />
 
-                                    <PlayIcon className={cx('icon-play')} />
+                                    {isPlaying && idTrack === item.id ? (
+                                        <div
+                                            style={{ display: 'flex' }}
+                                            onClick={() => {
+                                                idContext.dataPlaylist.funcPlaylist(
+                                                    '',
+                                                    '',
+                                                    playlist
+                                                );
+
+                                                idContext.dataTrack.funcTrack(
+                                                    i,
+                                                    item.id,
+                                                    'song',
+                                                    false
+                                                );
+                                            }}
+                                        >
+                                            <PauseIcon
+                                                width="1.6rem"
+                                                height="1.6rem"
+                                                className={cx('icon-play')}
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div
+                                            style={{ display: 'flex' }}
+                                            onClick={() => {
+                                                idContext.dataPlaylist.funcPlaylist(
+                                                    '',
+                                                    '',
+                                                    playlist
+                                                );
+
+                                                idContext.dataTrack.funcTrack(
+                                                    i,
+                                                    item.id,
+                                                    'song',
+                                                    true
+                                                );
+                                            }}
+                                        >
+                                            <PlayIcon
+                                                width="1.6rem"
+                                                height="1.6rem"
+                                                className={cx('icon-play')}
+                                            />
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className={cx('title__info')}>

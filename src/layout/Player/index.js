@@ -80,6 +80,32 @@ function Player() {
                         }
 
                         break;
+
+                    case 'song':
+                        setTrackPlayer({
+                            img: playlist[trackIndex].album.images[1]?.url,
+                            name: playlist[trackIndex].name,
+                            artist: playlist[trackIndex].artists[0].name,
+                            url: playlist[trackIndex].preview_url,
+                            data: playlist[trackIndex],
+                            isDefault: false,
+                        });
+
+                        window.localStorage.setItem(
+                            'idPlaylist',
+                            '37i9dQZF1DWVOaOWiVD1Lf'
+                        );
+                        window.localStorage.setItem('indexTrack', 0);
+
+                        if (trackIsPlaying) {
+                            setPlaying(true);
+                            audioRef.current.play();
+                        } else {
+                            setPlaying(false);
+                            audioRef.current.pause();
+                        }
+
+                        break;
                     default:
                         let PlaylistDefault = { id: null, index: null };
 

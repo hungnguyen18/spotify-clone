@@ -212,7 +212,7 @@
 .table-search__title {
     display: flex;
     text-align: left;
-    width: 50%;
+    width: 90%;
     height: 57px;
     align-items: center;
     padding-left: 10px;
@@ -234,8 +234,10 @@
         .icon-play {
             display: none;
             position: absolute;
-            top: 20%;
-            right: 20%;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+
             fill: var(--white);
         }
 

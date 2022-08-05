@@ -47,16 +47,16 @@ function Podcast({ playlist, skeleton, liked }) {
         <div className={cx('podcast__container')}>
             <div className={cx('podcast__wrapper')}>
                 <div className={cx('podcast__img')}>
-                    <img src={playlist.show.images[0].url} alt="" />
+                    <img src={playlist.images[0].url} alt="" />
                 </div>
 
                 <div className={cx('podcast__info')}>
                     <span className={cx('podcast__title')}>
-                        {playlist.show.name}
+                        {playlist.name}
                     </span>
 
                     <span className={cx('podcast__subtitle')}>
-                        {playlist.show.publisher}
+                        {playlist.publisher}
                     </span>
                 </div>
             </div>

@@ -56,7 +56,7 @@ function Podcasts() {
                             xs={12}
                             key={podcast.show.id}
                         >
-                            <Podcast playlist={podcast} />
+                            <Podcast playlist={podcast.show} />
                         </Col>
                     ))}
                 </Row>

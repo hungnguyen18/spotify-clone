@@ -7,9 +7,11 @@ import spotifyApi from '../../api/spotifyApi';
 import { dataContext } from '../../utils/DataProvider';
 import Genre from './Genre';
 import useDebounce from '../../hooks/useDebounce';
-import Button from '../../components/Button';
-import { HeartIcon, PlayIcon } from '../../components/Icon';
 import PlaylistTable from '../../components/PlaylistTable';
+import Playlist from '../../components/Playlist';
+import Artist from '../../components/Artist';
+import Album from '../../components/Album';
+import Podcast from '../../components/Podcast';
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +28,7 @@ function Search() {
     const searchContext = useContext(dataContext);
     const searchValue = useDebounce(searchContext.dataSearch.result, 500);
 
-    console.log(result);
+    // console.log(result);
 
     useEffect(() => {
         const getData = async () => {
@@ -76,47 +78,92 @@ function Search() {
         <div className="container">
             <div className="border--bottom">
                 {!!searchValue ? (
-                    <Row gutter={[30, 20]}>
-                        <Col xxl={10} xl={10} md={10} sm={24} xs={24}>
-                            <h3 className={cx('search__title')}>Top result</h3>
+                    <>
+                        <Row gutter={[30, 20]}>
+                            <Col xxl={10} xl={10} md={10} sm={24} xs={24}>
+                                <h3 className={cx('search__title')}>
+                                    Top result
+                                </h3>
+                                <Playlist
+                                    playlist={result.playlists[0]}
+                                    liked
+                                    search
+                                />
+                            </Col>
 
-                            <div className={cx('result__playlist')}>
-                                <div className={cx('result__img')}>
-                                    <img
-                                        src="https://seeded-session-images.scdn.co/v1/img/artist/5OvCh1Nin8AGw7OkxYinBe/en"
-                                        alt=""
-                                    />
-                                </div>
+                            <Col xxl={14} xl={14} md={14} sm={24} xs={24}>
+                                <h3 className={cx('search__title')}>Songs</h3>
+                                <PlaylistTable
+                                    playlist={result.tracks.slice(0, 4)}
+                                    search
+                                />
+                            </Col>
+                        </Row>
 
-                                <h2 className={cx('result__name')}>
-                                    Tiên Tiên Radio
-                                </h2>
+                        <h3 className={cx('search__title')}>Playlist</h3>
+                        <Row gutter={[20, 20]}>
+                            {result.playlists?.slice(0, 6).map((playlist) => (
+                                <Col
+                                    xxl={4}
+                                    xl={4}
+                                    md={6}
+                                    sm={12}
+                                    xs={12}
+                                    key={playlist.id}
+                                >
+                                    <Playlist playlist={playlist} />
+                                </Col>
+                            ))}
+                        </Row>
 
-                                <div className={cx('result__info')}>
-                                    <span className={cx('result__author')}>
-                                        By lafille
-                                    </span>
-                                    <span className={cx('result__type')}>
-                                        PLAYLIST
-                                    </span>
-                                </div>
+                        <h3 className={cx('search__title')}>Artists</h3>
+                        <Row gutter={[20, 20]}>
+                            {result.artists?.slice(0, 6).map((artist) => (
+                                <Col
+                                    xxl={4}
+                                    xl={4}
+                                    md={6}
+                                    sm={12}
+                                    xs={12}
+                                    key={artist.id}
+                                >
+                                    <Artist playlist={artist} />
+                                </Col>
+                            ))}
+                        </Row>
 
-                                <div className={cx('result__fade')}>
-                                    <Button play small>
-                                        <PlayIcon />
-                                    </Button>
-                                </div>
-                            </div>
-                        </Col>
+                        <h3 className={cx('search__title')}>Albums</h3>
+                        <Row gutter={[20, 20]}>
+                            {result.albums?.slice(0, 6).map((album) => (
+                                <Col
+                                    xxl={4}
+                                    xl={4}
+                                    md={6}
+                                    sm={12}
+                                    xs={12}
+                                    key={album.id}
+                                >
+                                    <Album playlist={album} />
+                                </Col>
+                            ))}
+                        </Row>
 
-                        <Col xxl={14} xl={14} md={14} sm={24} xs={24}>
-                            <h3 className={cx('search__title')}>Songs</h3>
-                            <PlaylistTable
-                                playlist={result.tracks.slice(0, 4)}
-                                search
-                            />
-                        </Col>
-                    </Row>
+                        <h3 className={cx('search__title')}>Podcasts</h3>
+                        <Row gutter={[20, 20]}>
+                            {result.podcasts?.slice(0, 6).map((podcast) => (
+                                <Col
+                                    xxl={4}
+                                    xl={4}
+                                    md={6}
+                                    sm={12}
+                                    xs={12}
+                                    key={podcast.id}
+                                >
+                                    <Podcast playlist={podcast} />
+                                </Col>
+                            ))}
+                        </Row>
+                    </>
                 ) : (
                     <>
                         <h3 className={cx('search__title')}>Browse all</h3>
