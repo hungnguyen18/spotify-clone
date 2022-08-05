@@ -1,6 +1,7 @@
 const authEndpoint = 'https://accounts.spotify.com/authorize?';
 const clientID = 'eda06710579b49d0a0d768764ec37158';
-const redirectUri = 'http://localhost:3000';
+// const redirectUri = 'http://localhost:3000';
+const redirectUri = 'https://spotify-clone-tau-ten.vercel.app';
 const scopes = [
     'streaming',
     'user-read-email',
