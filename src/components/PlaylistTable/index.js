@@ -18,7 +18,6 @@ import { dataContext } from '../../utils/DataProvider';
 const cx = classNames.bind(styles);
 
 function PlaylistTable({ playlist, res, search = false }) {
-    const [isActiveIcon, setIsActiveIcon] = useState(false);
     const [isActiveRow, setIsActiveRow] = useState();
 
     const dataMenuPopper = [
@@ -98,12 +97,6 @@ function PlaylistTable({ playlist, res, search = false }) {
     const idContext = useContext(dataContext);
     const isPlaying = idContext.dataTrack.isPlaying;
     const idTrack = idContext.dataTrack.id;
-
-    const handleSetActiveIcon = () => {
-        const isActive = isActiveIcon === true ? false : true;
-
-        setIsActiveIcon(isActive);
-    };
 
     const handleSetId = (id) => {
         setIsActiveRow(id);
@@ -205,25 +198,12 @@ function PlaylistTable({ playlist, res, search = false }) {
                             </td>
                             <td className={cx('table-search__time')}>
                                 <div className={cx('time')}>
-                                    <div
-                                        className={cx('time__icon')}
-                                        onClick={(e) =>
-                                            handleSetActiveIcon(e, item.id)
-                                        }
-                                    >
-                                        {isActiveIcon ? (
-                                            <HeartActiveIcon
-                                                width="1.6rem"
-                                                height="1.6rem"
-                                                className={cx('icon-active')}
-                                            />
-                                        ) : (
-                                            <HeartIcon
-                                                width="1.6rem"
-                                                height="1.6rem"
-                                                className={cx('icon')}
-                                            />
-                                        )}
+                                    <div className={cx('time__icon')}>
+                                        <HeartIcon
+                                            width="1.6rem"
+                                            height="1.6rem"
+                                            className={cx('icon')}
+                                        />
                                     </div>
 
                                     <span className={cx('time__song')}>
@@ -391,28 +371,12 @@ function PlaylistTable({ playlist, res, search = false }) {
                             </td>
                             <td className={cx('table__time')}>
                                 <div className={cx('time')}>
-                                    <div
-                                        className={cx('time__icon')}
-                                        onClick={(e) =>
-                                            handleSetActiveIcon(
-                                                e,
-                                                item.track.id
-                                            )
-                                        }
-                                    >
-                                        {isActiveIcon ? (
-                                            <HeartActiveIcon
-                                                width="1.6rem"
-                                                height="1.6rem"
-                                                className={cx('icon-active')}
-                                            />
-                                        ) : (
-                                            <HeartIcon
-                                                width="1.6rem"
-                                                height="1.6rem"
-                                                className={cx('icon')}
-                                            />
-                                        )}
+                                    <div className={cx('time__icon')}>
+                                        <HeartIcon
+                                            width="1.6rem"
+                                            height="1.6rem"
+                                            className={cx('icon')}
+                                        />
                                     </div>
 
                                     <span className={cx('time__song')}>
