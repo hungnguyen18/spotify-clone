@@ -17,7 +17,7 @@ import { dataContext } from '../../utils/DataProvider';
 
 const cx = classNames.bind(styles);
 
-function PlaylistTable({ playlist, res }) {
+function PlaylistTable({ playlist, res, search = false }) {
     const [isActiveIcon, setIsActiveIcon] = useState(false);
     const [isActiveRow, setIsActiveRow] = useState();
 
@@ -109,7 +109,112 @@ function PlaylistTable({ playlist, res }) {
         setIsActiveRow(id);
     };
 
-    return (
+    return search ? (
+        <div className={cx('table-search')}>
+            <table>
+                <tbody>
+                    {playlist?.map((item, i) => (
+                        <tr
+                            className={cx(
+                                'table-search__row',
+                                `${item.id === isActiveRow ? 'active' : ''}`
+                            )}
+                            key={item.id}
+                            onClick={() => handleSetId(item.id)}
+                        >
+                            <td className={cx('table-search__title')}>
+                                <div className={cx('title__img')}>
+                                    <img
+                                        src={item.album.images
+                                            ?.map((img) => img.url)
+                                            .slice(1, 2)}
+                                        alt=""
+                                    />
+
+                                    <PlayIcon className={cx('icon-play')} />
+                                </div>
+
+                                <div className={cx('title__info')}>
+                                    <span
+                                        className={cx(
+                                            'title__name',
+                                            `${
+                                                isPlaying === true &&
+                                                idTrack === item.id
+                                                    ? 'active'
+                                                    : ''
+                                            }`
+                                        )}
+                                    >
+                                        {item?.name}
+                                    </span>
+                                    <span className={cx('title__author')}>
+                                        {item.artists
+                                            ?.map((item) => item.name)
+                                            .slice(0, 1)}
+                                    </span>
+                                </div>
+                            </td>
+                            <td className={cx('table-search__time')}>
+                                <div className={cx('time')}>
+                                    <div
+                                        className={cx('time__icon')}
+                                        onClick={(e) =>
+                                            handleSetActiveIcon(e, item.id)
+                                        }
+                                    >
+                                        {isActiveIcon ? (
+                                            <HeartActiveIcon
+                                                width="1.6rem"
+                                                height="1.6rem"
+                                                className={cx('icon-active')}
+                                            />
+                                        ) : (
+                                            <HeartIcon
+                                                width="1.6rem"
+                                                height="1.6rem"
+                                                className={cx('icon')}
+                                            />
+                                        )}
+                                    </div>
+
+                                    <span className={cx('time__song')}>
+                                        {moment
+                                            .utc(
+                                                moment
+                                                    .duration(
+                                                        item?.duration_ms,
+                                                        'millisecond'
+                                                    )
+                                                    .asMilliseconds()
+                                            )
+                                            .format('mm:ss')}
+                                    </span>
+
+                                    <div style={{ textAlign: 'left' }}>
+                                        <Popper
+                                            data={dataMenuPopper}
+                                            width={'210px'}
+                                            offset={[200, 0]}
+                                            placement={'left'}
+                                        >
+                                            <div>
+                                                <MoreMenuIcon
+                                                    width="1.6rem"
+                                                    height="1.6rem"
+                                                    className={cx('icon')}
+                                                />
+                                            </div>
+                                        </Popper>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    ) : (
         <div className={cx('table')}>
             <table>
                 <thead>
